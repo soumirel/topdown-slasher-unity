@@ -9,4 +9,4 @@ EditorBuildSettings:
     path: Assets/AnimationPreviewScene/AnimationPreviewScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: 86b4f4624a563de4195edd0dd2cb5d4c, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: d036393d8a2a6994ebc03f4ac45b608c, type: 2}

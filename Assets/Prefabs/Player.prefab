@@ -187,6 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 1727416078062739967}
   playerAnimation: {fileID: 2185136609265821238}
+  playerInput: {fileID: 1727416078062739964}
   movementSmoothingSpeed: 5
 --- !u!114 &1727416078062739967
 MonoBehaviour:

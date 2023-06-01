@@ -32,7 +32,6 @@ public class PlayerAnimation : MonoBehaviour
 
     public void PlayAttackAnimation()
     {
-        print("PlayAttackAnimation");
         _animator.SetTrigger(Shot);
     }
 }

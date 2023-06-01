@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 1727416078062739962}
   - component: {fileID: 1727416078062739965}
   - component: {fileID: 1727416078062739964}
-  - component: {fileID: 1727416078062739967}
   - component: {fileID: 1727416078062739960}
+  - component: {fileID: 1727416078062739967}
+  - component: {fileID: 2185136609265821238}
   - component: {fileID: 1727416078062739961}
   m_Layer: 0
   m_Name: Player
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9b78c8767f3b7c5419658e14d0a7072c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d132d8d257aa9947b6a3cbda65223a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -151,11 +152,42 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fcc07661-b5bf-4115-aac7-77f0c1de89af
     m_ActionName: PlayerControls/Movement
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1727416078062739960}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4e049f60-fc74-4327-92ee-7508ceeb0faf
+    m_ActionName: PlayerControls/Shot
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerControls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1727416078062739960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1727416078062739966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e2f31006ac16140a0e36e3e8c9a4e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 1727416078062739967}
+  playerAnimation: {fileID: 2185136609265821238}
+  movementSmoothingSpeed: 5
 --- !u!114 &1727416078062739967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRigidbody: {fileID: 1727416078062739965}
   movementSpeed: 3
---- !u!114 &1727416078062739960
+--- !u!114 &2185136609265821238
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,11 +211,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1727416078062739966}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76e2f31006ac16140a0e36e3e8c9a4e3, type: 3}
+  m_Script: {fileID: 11500000, guid: f982b5a3faf1a694e92fbbb2ca4c6d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 1727416078062739967}
-  movementSmoothingSpeed: 5
+  _animator: {fileID: 1727416078062739961}
 --- !u!95 &1727416078062739961
 Animator:
   serializedVersion: 5

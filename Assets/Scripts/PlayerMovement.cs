@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveThePlayer()
     {
-        Vector3 movement = _movementDirection * (movementSpeed * Time.deltaTime);
+        Vector3 movement = _movementDirection * (movementSpeed * Time.fixedDeltaTime);
         playerRigidbody.MovePosition(transform.position + movement);
     }
 }

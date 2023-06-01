@@ -19,8 +19,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext value)
     {
-        print("OnAttack" + " " + value.performed);
-        if(value.performed)
+        if(value.started)
         {
             playerAnimation.PlayAttackAnimation();
         }

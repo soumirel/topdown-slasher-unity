@@ -56,7 +56,7 @@ namespace Weapons
             bullet.transform.position = _shootPosition.position;
             bullet.transform.rotation = _shootPosition.rotation;
             
-            //bullet.Rb.AddForce(_shootPosition.up * _bulletForce);
+            bullet.Rb.AddForce(_shootPosition.up * _bulletForce);
             _isReady = false;
         }
     }

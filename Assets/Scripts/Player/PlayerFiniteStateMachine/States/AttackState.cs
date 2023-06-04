@@ -1,7 +1,6 @@
-﻿using Player.PlayerFiniteStateMachine.States;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Player.PlayerFiniteStateMachine
+namespace Player.PlayerFiniteStateMachine.States
 {
     public class AttackState : PlayerState
     {
@@ -20,6 +19,7 @@ namespace Player.PlayerFiniteStateMachine
 
         private void AnimationShotFrameTrigger()
         {
+            Debug.Log("AnimationShotFrameTrigger");
             player.Weapon.Use();
         }
     }

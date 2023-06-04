@@ -10,17 +10,19 @@ namespace Player.Input
         private Camera _camera;
 
         private Vector2 _rawInputMovement;
-        private Vector2 _rawInputSight;
+        private Vector2 _rawSightPosition;
         private bool _attackInput;
 
         private Vector2 _movementDirection;
+        private Vector2 _worldSightPosition;
         private Vector2 _sightDirection;
         private float _sightRotation;
 
+        public Vector2 WorldSightPosition => _worldSightPosition;
         public bool AttackInput => _attackInput;
         public Vector2 SightDirection => _sightDirection;
         public Vector2 MovementDirection => _movementDirection;
-        public float SightRotation => _sightRotation;
+
 
 
         private void Start()
@@ -43,10 +45,11 @@ namespace Player.Input
 
         public void OnSightPosition(InputAction.CallbackContext value)
         {
-            _rawInputSight = value.ReadValue<Vector2>();
-            _sightDirection = (_camera.ScreenToWorldPoint(_rawInputSight) -
-                               transform.position).normalized;
-            _sightRotation = Mathf.Atan2(_sightDirection.y, _sightDirection.x) * Mathf.Rad2Deg - 90f;
+            _rawSightPosition = value.ReadValue<Vector2>();
+            _worldSightPosition = (_camera.ScreenToWorldPoint(_rawSightPosition) -
+                                   transform.position);
+            _sightDirection = _worldSightPosition.normalized;
+            
         }
 
         public void FinishAttack()

@@ -11,13 +11,11 @@ namespace Player
 
         public void AnimationFinishedTrigger()
         {
-            print("AnimationFinishedTrigger");
             OnAnimationFinish?.Invoke();
         }
 
         public void ShotFrameTrigger()
         {
-            print("ShotFrameTrigger");
             OnShotFrame?.Invoke();
         }
     }

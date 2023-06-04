@@ -39,18 +39,24 @@ namespace Weapons
             OnReady?.Invoke();
         }
 
-        public void Rotate(float angle)
+        public void RotateToSight(Vector2 sightPosition)
         {
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            float rotateZ = Mathf.Atan2(sightPosition.y - transform.localPosition.y,
+                sightPosition.x- transform.localPosition.x) * Mathf.Rad2Deg;
+            
+            transform.rotation = Quaternion.Euler(0, 0, rotateZ - 90f);
         }
 
         public void Use()
         {
+            Debug.Log("Use");
             _cooldownTimer.StartTimer();
             var bullet = _bulletsPool.Get();
+            
             bullet.transform.position = _shootPosition.position;
             bullet.transform.rotation = _shootPosition.rotation;
-            bullet.Rb.AddForce(_shootPosition.up * _bulletForce);
+            
+            //bullet.Rb.AddForce(_shootPosition.up * _bulletForce);
             _isReady = false;
         }
     }

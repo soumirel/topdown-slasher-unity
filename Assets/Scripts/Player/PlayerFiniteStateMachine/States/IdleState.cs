@@ -12,7 +12,7 @@
             player.Animator.SetFloat(player.SightXParam ,player.InputHandler.SightDirection.x);
             player.Animator.SetFloat(player.SightYParam ,player.InputHandler.SightDirection.y);
             
-            player.Weapon.Rotate(player.InputHandler.SightRotation);
+            player.Weapon.RotateToSight(player.InputHandler.WorldSightPosition);
 
             if (player.InputHandler.MovementDirection.sqrMagnitude != 0)
             {

@@ -3,6 +3,7 @@ using Player.Input;
 using Player.PlayerFiniteStateMachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Weapons;
 
 namespace Player
 {
@@ -13,11 +14,13 @@ namespace Player
         [SerializeField] private PlayerInputHandler _inputHandler;
         [SerializeField] private PlayerStateMachine _stateMachine;
         [SerializeField] private AnimationEventHandler _animationEventHandler;
+        [SerializeField] private Weapon _weapon;
         
         public Rigidbody2D Rb => rb;
         public Animator Animator => _animator;
         public PlayerInputHandler InputHandler => _inputHandler;
         public AnimationEventHandler AnimationEventHandler => _animationEventHandler;
+        public Weapon Weapon => _weapon;
 
         public readonly int SightXParam = Animator.StringToHash("sightX");
         public readonly int SightYParam = Animator.StringToHash("sightY");

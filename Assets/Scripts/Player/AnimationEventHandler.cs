@@ -9,8 +9,16 @@ namespace Player
 
         public event Action OnShotFrame;
 
-        public void AnimationFinishedTrigger() => OnAnimationFinish?.Invoke();
+        public void AnimationFinishedTrigger()
+        {
+            print("AnimationFinishedTrigger");
+            OnAnimationFinish?.Invoke();
+        }
 
-        public void ShotFrameTrigger() => OnShotFrame?.Invoke();
+        public void ShotFrameTrigger()
+        {
+            print("ShotFrameTrigger");
+            OnShotFrame?.Invoke();
+        }
     }
 }

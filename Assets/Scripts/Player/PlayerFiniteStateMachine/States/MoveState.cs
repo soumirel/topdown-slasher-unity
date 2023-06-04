@@ -14,13 +14,15 @@ namespace Player.PlayerFiniteStateMachine.States
             
             player.Animator.SetFloat(player.SightXParam ,player.InputHandler.SightDirection.x);
             player.Animator.SetFloat(player.SightYParam ,player.InputHandler.SightDirection.y);
+            
+            player.Weapon.Rotate(player.InputHandler.SightRotation);
 
             if (player.InputHandler.MovementDirection.sqrMagnitude == 0)
             {
                 stateMachine.SwitchState(PlayerStateType.Idle);
             }
 
-            if (player.InputHandler.AttackInput)
+            if (player.InputHandler.AttackInput && player.Weapon.IsReady)
             {
                 stateMachine.SwitchState(PlayerStateType.Attack);
             }

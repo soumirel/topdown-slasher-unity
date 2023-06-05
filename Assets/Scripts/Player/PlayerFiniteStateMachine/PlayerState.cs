@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ComponentSystem;
+using UnityEngine;
 using UnityEngine.PlayerLoop;
 
 namespace Player.PlayerFiniteStateMachine
@@ -9,6 +10,8 @@ namespace Player.PlayerFiniteStateMachine
         protected readonly PlayerStateMachine stateMachine;
 
         private readonly int _hashedAnimatorParam;
+        
+        protected MovementComponent _movement;
 
         protected PlayerState(PlayerController player, PlayerStateMachine stateMachine, int hashedAnimatorParam)
         {
@@ -16,6 +19,8 @@ namespace Player.PlayerFiniteStateMachine
             this.stateMachine = stateMachine;
             _hashedAnimatorParam = hashedAnimatorParam;
             player.AnimationEventHandler.OnAnimationFinish += AnimationFinishTrigger;
+            
+            _movement = player.Core.GetCoreComponent<MovementComponent>();
         }
 
         public virtual void Enter()

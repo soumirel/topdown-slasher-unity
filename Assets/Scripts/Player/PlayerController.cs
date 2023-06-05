@@ -1,4 +1,7 @@
+using System;
 using System.Collections;
+using Components;
+using Data;
 using Player.Input;
 using Player.PlayerFiniteStateMachine;
 using UnityEngine;
@@ -9,18 +12,17 @@ namespace Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private Rigidbody2D rb;
-        [SerializeField] private Animator _animator;
-        [SerializeField] private PlayerInputHandler _inputHandler;
-        [SerializeField] private PlayerStateMachine _stateMachine;
-        [SerializeField] private AnimationEventHandler _animationEventHandler;
-        [SerializeField] private Weapon _weapon;
+        [SerializeField] private PlayerData _data;
         
-        public Rigidbody2D Rb => rb;
-        public Animator Animator => _animator;
-        public PlayerInputHandler InputHandler => _inputHandler;
-        public AnimationEventHandler AnimationEventHandler => _animationEventHandler;
+        [SerializeField] private Weapon _weapon;
+
+        public Core Core { get; private set; }
+        public Animator Animator{ get; private set; }
+        public PlayerInputHandler InputHandler { get; private set; }
+        public AnimationEventHandler AnimationEventHandler { get; private set; }
+
         public Weapon Weapon => _weapon;
+        public PlayerData Data => _data;
 
         public readonly int SightXParam = Animator.StringToHash("sightX");
         public readonly int SightYParam = Animator.StringToHash("sightY");
@@ -30,7 +32,14 @@ namespace Player
         public readonly int HitParam = Animator.StringToHash("hit");
         public readonly int DeathParam = Animator.StringToHash("death");
 
-        [SerializeField] private float _moveSpeed;
-        public float MoveSpeed => _moveSpeed;
+        public void Awake()
+        {
+            Core = GetComponentInChildren<Core>();
+            Animator = GetComponent<Animator>();
+            InputHandler = GetComponent<PlayerInputHandler>();
+            AnimationEventHandler = GetComponent<AnimationEventHandler>();
+            
+            GetComponent<PlayerStateMachine>().InitializeStates();
+        }
     }
 }

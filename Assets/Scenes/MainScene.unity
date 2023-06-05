@@ -360,10 +360,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2687116373692964406, guid: 11a26fa8ffcb1e44390ec4354ac548ef, type: 3}
-      propertyPath: m_SpriteSortPoint
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4866616247225412885, guid: 11a26fa8ffcb1e44390ec4354ac548ef, type: 3}
       propertyPath: _bulletsPool
       value: 

@@ -1,12 +1,18 @@
 ﻿
+using ComponentSystem;
 using UnityEngine;
 
 namespace Player.PlayerFiniteStateMachine.States
 {
     public class MoveState : PlayerState
     {
-        public MoveState(PlayerController player, PlayerStateMachine stateMachine, int hashedAnimatorParam) 
-            : base(player, stateMachine, hashedAnimatorParam) {}
+        private float _movementSpeed;
+
+        public MoveState(PlayerController player, PlayerStateMachine stateMachine, int hashedAnimatorParam)
+            : base(player, stateMachine, hashedAnimatorParam)
+        {
+            _movementSpeed = player.Data.MovementSpeed;
+        }
         
         public override void LogicUpdate()
         {
@@ -31,9 +37,8 @@ namespace Player.PlayerFiniteStateMachine.States
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-            
-            var movement = player.InputHandler.MovementDirection * (player.MoveSpeed * Time.fixedDeltaTime);
-            player.Rb.MovePosition(player.Rb.position + movement);
+            //var movement = player.InputHandler.MovementDirection * (_movementSpeed * Time.fixedDeltaTime);
+            _movement.SetVelocity(_movementSpeed, player.InputHandler.MovementDirection);
         }
     }
 }

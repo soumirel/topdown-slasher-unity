@@ -9,6 +9,12 @@ namespace Player.PlayerFiniteStateMachine.States
         {
             player.AnimationEventHandler.OnShotFrame += AnimationShotFrameTrigger;
         }
+        
+        public override void Enter()
+        {
+            base.Enter();
+            _movement.SetVelocityZero();
+        }
 
         protected override void AnimationFinishTrigger()
         {

@@ -14,10 +14,9 @@ namespace Player.PlayerFiniteStateMachine
             = new Dictionary<PlayerStateType, PlayerState>();
 
         private PlayerState _currentState;
-        
+
         public void Start()
         {
-            InitializeStates();
             if (_states.TryGetValue(PlayerStateType.Idle, out var startState))
             {
                 _currentState = startState;
@@ -25,7 +24,7 @@ namespace Player.PlayerFiniteStateMachine
             }
         }
 
-        private void InitializeStates()
+        public void InitializeStates()
         {
            _states.Add(PlayerStateType.Idle, new IdleState(_player, this, _player.IdleParam));
            _states.Add(PlayerStateType.Move, new MoveState(_player, this, _player.MoveParam));
@@ -43,12 +42,12 @@ namespace Player.PlayerFiniteStateMachine
 
         private void Update()
         {
-            _currentState.LogicUpdate();
+            _currentState?.LogicUpdate();
         }
 
         private void FixedUpdate()
         {
-            _currentState.PhysicsUpdate();
+            _currentState?.PhysicsUpdate();
         }
     }
 }

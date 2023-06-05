@@ -32,7 +32,6 @@ namespace Weapons
 
         public void OnCollisionEnter2D(Collision2D other)
         {
-            Debug.Log(other);
             Clear();
             gameObject.SetActive(false);
         }

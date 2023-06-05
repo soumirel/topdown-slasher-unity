@@ -13,6 +13,8 @@ namespace ComponentSystem.Components
 
         public void Awake()
         {
+            _stats = new Dictionary<StatType, Stat>();
+            
             foreach (var statSettings in _statsSettings)
             {
                 _stats.TryAdd(statSettings.Type,

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Data
 {
+    [CreateAssetMenu(fileName ="StatData", menuName ="Data/Stat Data")]
     public class StatData : ScriptableObject
     {
         [SerializeField] private StatType _statType = StatType.None;

@@ -37,7 +37,6 @@ namespace Player.PlayerFiniteStateMachine.States
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-            //var movement = player.InputHandler.MovementDirection * (_movementSpeed * Time.fixedDeltaTime);
             _movement.SetVelocity(_movementSpeed, player.InputHandler.MovementDirection);
         }
     }

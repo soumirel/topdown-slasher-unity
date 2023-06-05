@@ -20,17 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: b6f76f8d90ab58a4e8964746fe8a6e19, type: 3}
-    - time: 0.1
       value: {fileID: 21300000, guid: 0842ed9dc4aac0f499071dc619f6a99c, type: 3}
-    - time: 0.2
+    - time: 0.1
       value: {fileID: 21300000, guid: e75e312ca666f504f92d02d515d6252c, type: 3}
-    - time: 0.3
+    - time: 0.2
       value: {fileID: 21300000, guid: 4a37a9e4969cc524fb419d9a2c9c3e4c, type: 3}
-    - time: 0.4
+    - time: 0.3
       value: {fileID: 21300000, guid: 769ced7dde5895c409589a80c2dc35e8, type: 3}
-    - time: 0.5
-      value: {fileID: 21300000, guid: 3aa67bf362b761f45aaa858ba31757f0, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -50,18 +46,16 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: b6f76f8d90ab58a4e8964746fe8a6e19, type: 3}
     - {fileID: 21300000, guid: 0842ed9dc4aac0f499071dc619f6a99c, type: 3}
     - {fileID: 21300000, guid: e75e312ca666f504f92d02d515d6252c, type: 3}
     - {fileID: 21300000, guid: 4a37a9e4969cc524fb419d9a2c9c3e4c, type: 3}
     - {fileID: 21300000, guid: 769ced7dde5895c409589a80c2dc35e8, type: 3}
-    - {fileID: 21300000, guid: 3aa67bf362b761f45aaa858ba31757f0, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6
+    m_StopTime: 0.4
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -81,14 +75,14 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.2
+  - time: 0.1
     functionName: ShotFrameTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5
+  - time: 0.3
     functionName: AnimationFinishedTrigger
     data: 
     objectReferenceParameter: {fileID: 1727416078062739966, guid: 11a26fa8ffcb1e44390ec4354ac548ef, type: 3}

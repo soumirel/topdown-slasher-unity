@@ -12,25 +12,28 @@ namespace Weapons
         public void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _rb.Sleep();
         }
 
         public void Prepare()
         {
-            Rb.position = Vector2.zero;
-            Rb.rotation = 0f;
-            Rb.velocity = Vector2.zero;
-            Rb.angularVelocity = 0f;
+            _rb.position = Vector2.zero;
+            _rb.rotation = 0f;
+            _rb.velocity = Vector2.zero;
+            _rb.angularVelocity = 0f;
+            _rb.inertia = 0f;
+            _rb.WakeUp();
         }
 
         public void Clear()
         {
-            
+            _rb.Sleep();
         }
 
         public void OnCollisionEnter2D(Collision2D other)
         {
-            
-            
+            Debug.Log(other);
+            Clear();
             gameObject.SetActive(false);
         }
     }

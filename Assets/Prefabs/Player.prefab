@@ -451,7 +451,7 @@ MonoBehaviour:
   _shootPosition: {fileID: 8930612271138636357}
   _bulletsPool: {fileID: 0}
   _bulletForce: 10000
-  _cooldownSeconds: 0.2
+  _cooldownSeconds: 0
 --- !u!1 &8426747786652164864
 GameObject:
   m_ObjectHideFlags: 0

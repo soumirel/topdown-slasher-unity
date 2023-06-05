@@ -21,7 +21,7 @@ namespace Player.PlayerFiniteStateMachine.States
             player.Animator.SetFloat(player.SightXParam ,player.InputHandler.SightDirection.x);
             player.Animator.SetFloat(player.SightYParam ,player.InputHandler.SightDirection.y);
             
-            player.Weapon.RotateToSight(player.InputHandler.WorldSightPosition);
+            player.Weapon.Rotate(player.InputHandler.WorldSightPosition);
 
             if (player.InputHandler.MovementDirection.sqrMagnitude == 0)
             {

@@ -39,10 +39,10 @@ namespace Weapons
             OnReady?.Invoke();
         }
 
-        public void RotateToSight(Vector2 sightPosition)
+        public void Rotate(Vector2 lookAtPosition)
         {
-            float rotateZ = Mathf.Atan2(sightPosition.y - transform.localPosition.y,
-                sightPosition.x- transform.localPosition.x) * Mathf.Rad2Deg;
+            float rotateZ = Mathf.Atan2(lookAtPosition.y - transform.localPosition.y,
+                lookAtPosition.x- transform.localPosition.x) * Mathf.Rad2Deg;
             
             transform.rotation = Quaternion.Euler(0, 0, rotateZ - 90f);
         }

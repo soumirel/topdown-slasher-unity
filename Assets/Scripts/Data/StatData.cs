@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Data
 {
-    public class StatSO : ScriptableObject
+    public class StatData : ScriptableObject
     {
         [SerializeField] private StatType _statType = StatType.None;
 

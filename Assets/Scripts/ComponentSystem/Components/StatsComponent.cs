@@ -7,7 +7,7 @@ namespace ComponentSystem.Components
 {
     public class StatsComponent : Component
     {
-        [SerializeField] private List<StatSO> _statsSettings;
+        [SerializeField] private List<StatData> _statsSettings;
         
         private Dictionary<StatType, Stat> _stats;
 

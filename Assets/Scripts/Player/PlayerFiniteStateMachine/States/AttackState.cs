@@ -10,7 +10,6 @@ namespace Player.PlayerFiniteStateMachine.States
             player.AnimationEventHandler.OnShotFrame += AnimationShotFrameTrigger;
         }
 
-
         protected override void AnimationFinishTrigger()
         {
             player.InputHandler.FinishAttack();
@@ -19,7 +18,6 @@ namespace Player.PlayerFiniteStateMachine.States
 
         private void AnimationShotFrameTrigger()
         {
-            Debug.Log("AnimationShotFrameTrigger");
             player.Weapon.Use();
         }
     }

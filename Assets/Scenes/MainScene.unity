@@ -303,9 +303,49 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4866616247225412885, guid: 11a26fa8ffcb1e44390ec4354ac548ef, type: 3}
+      propertyPath: _bulletForce
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866616247225412885, guid: 11a26fa8ffcb1e44390ec4354ac548ef, type: 3}
       propertyPath: _bulletsPool
       value: 
       objectReference: {fileID: 1829712303}
+    - target: {fileID: 4866616247225412885, guid: 11a26fa8ffcb1e44390ec4354ac548ef, type: 3}
+      propertyPath: _cooldownSeconds
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866616247225412885, guid: 11a26fa8ffcb1e44390ec4354ac548ef, type: 3}
+      propertyPath: _weaponPositions.EastPosition
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866616247225412885, guid: 11a26fa8ffcb1e44390ec4354ac548ef, type: 3}
+      propertyPath: _weaponPositions.WestPosition
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866616247225412885, guid: 11a26fa8ffcb1e44390ec4354ac548ef, type: 3}
+      propertyPath: _weaponPositions.NorthPosition
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866616247225412885, guid: 11a26fa8ffcb1e44390ec4354ac548ef, type: 3}
+      propertyPath: _weaponPositions.SouthPosition
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866616247225412885, guid: 11a26fa8ffcb1e44390ec4354ac548ef, type: 3}
+      propertyPath: _weaponPositions.NorthEastPosition
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866616247225412885, guid: 11a26fa8ffcb1e44390ec4354ac548ef, type: 3}
+      propertyPath: _weaponPositions.NorthWestPosition
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866616247225412885, guid: 11a26fa8ffcb1e44390ec4354ac548ef, type: 3}
+      propertyPath: _weaponPositions.SouthEastPosition
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4866616247225412885, guid: 11a26fa8ffcb1e44390ec4354ac548ef, type: 3}
+      propertyPath: _weaponPositions.SouthWestPosition
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11a26fa8ffcb1e44390ec4354ac548ef, type: 3}
 --- !u!1001 &1948949851

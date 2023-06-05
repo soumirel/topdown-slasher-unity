@@ -8,21 +8,21 @@
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            
-            player.Animator.SetFloat(player.SightXParam ,player.InputHandler.SightDirection.x);
-            player.Animator.SetFloat(player.SightYParam ,player.InputHandler.SightDirection.y);
-            
-            player.Weapon.RotateToSight(player.InputHandler.WorldSightPosition);
-
-            if (player.InputHandler.MovementDirection.sqrMagnitude != 0)
-            {
-                stateMachine.SwitchState(PlayerStateType.Move);
-            }
 
             if (player.InputHandler.AttackInput && player.Weapon.IsReady)
             {
                 stateMachine.SwitchState(PlayerStateType.Attack);
             }
+            
+            if (player.InputHandler.MovementDirection.sqrMagnitude != 0)
+            {
+                stateMachine.SwitchState(PlayerStateType.Move);
+            }
+
+            player.Animator.SetFloat(player.SightXParam ,player.InputHandler.SightDirection.x);
+            player.Animator.SetFloat(player.SightYParam ,player.InputHandler.SightDirection.y);
+            
+            player.Weapon.RotateToSight(player.InputHandler.WorldSightPosition);
         }
     }
 }

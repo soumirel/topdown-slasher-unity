@@ -40,7 +40,10 @@ namespace Player.Input
 
         public void OnAttack(InputAction.CallbackContext value)
         {
-            _attackInput = true;
+            if (value.started)
+            {
+                _attackInput = true;
+            }
         }
 
         public void OnSightPosition(InputAction.CallbackContext value)

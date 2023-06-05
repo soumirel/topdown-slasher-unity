@@ -49,7 +49,6 @@ namespace Weapons
 
         public void Use()
         {
-            Debug.Log("Use");
             _cooldownTimer.StartTimer();
             var bullet = _bulletsPool.Get();
             

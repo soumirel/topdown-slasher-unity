@@ -259,6 +259,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1587634871 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1727416078062739963, guid: 11a26fa8ffcb1e44390ec4354ac548ef, type: 3}
+  m_PrefabInstance: {fileID: 1889914083}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1829712302
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,7 +413,7 @@ PrefabInstance:
     - target: {fileID: 1792078829, guid: 8f041d2d547e64c4cb34b2601e756dcd, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1587634871}
     - target: {fileID: 1792078829, guid: 8f041d2d547e64c4cb34b2601e756dcd, type: 3}
       propertyPath: m_Lens.FarClipPlane
       value: 1000
@@ -439,11 +444,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5788225281686890782, guid: 8f041d2d547e64c4cb34b2601e756dcd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.7499995
+      value: 0.00000047683716
       objectReference: {fileID: 0}
     - target: {fileID: 5788225281686890782, guid: 8f041d2d547e64c4cb34b2601e756dcd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6999995
+      value: -0.00000047683716
       objectReference: {fileID: 0}
     - target: {fileID: 5788225281686890782, guid: 8f041d2d547e64c4cb34b2601e756dcd, type: 3}
       propertyPath: m_LocalPosition.z

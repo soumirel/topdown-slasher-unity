@@ -5,6 +5,7 @@
         None = -1,
         Idle,
         Move,
+        Aim,
         Attack,
         Die
     }

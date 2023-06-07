@@ -1,62 +1,47 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utilities;
 
 namespace Weapons
 {
-    public class Weapon : MonoBehaviour
+    public abstract class Weapon : MonoBehaviour
     {
         public event Action OnReady;
 
-        [SerializeField] private Transform _shootPosition;
-        
-        [SerializeField] private BulletsPool _bulletsPool;
+        [SerializeField] protected float cooldownSeconds;
+        protected bool isReady;
+        protected Timer cooldownTimer;
 
-        [SerializeField] private float _bulletForce;
-        
-        [SerializeField] private float _cooldownSeconds;
 
-        private bool _isReady;
+        public bool IsReady => isReady;
 
-        private Timer _cooldownTimer;
 
-        public bool IsReady => _isReady;
+        public abstract void Use();
 
-        private void Awake()
+        protected virtual void Awake()
         {
-            _isReady = true;
-            _cooldownTimer = new Timer(_cooldownSeconds, AllowUse);
+            isReady = true;
+            cooldownTimer = new Timer(cooldownSeconds, AllowUse);
         }
 
-        private void Update()
+        protected virtual void Update()
         {
-            _cooldownTimer.Update();
+            cooldownTimer.Update();
         }
 
-        private void AllowUse()
+        protected virtual void AllowUse()
         {
-            _isReady = true;
+            isReady = true;
             OnReady?.Invoke();
         }
 
-        public void Rotate(Vector2 lookAtPosition)
+        public virtual void Rotate(Vector2 lookAtPosition)
         {
             float rotateZ = Mathf.Atan2(lookAtPosition.y - transform.localPosition.y,
-                lookAtPosition.x- transform.localPosition.x) * Mathf.Rad2Deg;
-            
-            transform.rotation = Quaternion.Euler(0, 0, rotateZ - 90f);
-        }
+                lookAtPosition.x - transform.localPosition.x) * Mathf.Rad2Deg;
 
-        public void Use()
-        {
-            _cooldownTimer.StartTimer();
-            var bullet = _bulletsPool.Get();
-            
-            bullet.transform.position = _shootPosition.position;
-            bullet.transform.rotation = _shootPosition.rotation;
-            
-            bullet.Rb.AddForce(_shootPosition.up * _bulletForce);
-            _isReady = false;
+            transform.rotation = Quaternion.Euler(0, 0, rotateZ - 90f);
         }
     }
 }

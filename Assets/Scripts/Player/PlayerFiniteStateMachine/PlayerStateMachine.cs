@@ -26,9 +26,10 @@ namespace Player.PlayerFiniteStateMachine
 
         public void InitializeStates()
         {
-           _states.Add(PlayerStateType.Idle, new IdleState(_player, this, _player.IdleParam));
-           _states.Add(PlayerStateType.Move, new MoveState(_player, this, _player.MoveParam));
-           _states.Add(PlayerStateType.Attack, new AttackState(_player, this, _player.AttackParam));
+           _states.TryAdd(PlayerStateType.Idle, new IdleState(_player, this, _player.IdleParam));
+           _states.TryAdd(PlayerStateType.Move, new MoveState(_player, this, _player.MoveParam));
+           _states.TryAdd(PlayerStateType.Aim, new AimState(_player, this, _player.AimParam));
+           _states.TryAdd(PlayerStateType.Attack, new AttackState(_player, this, _player.AttackParam));
         }
 
         public void SwitchState(PlayerStateType stateType)

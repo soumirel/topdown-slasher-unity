@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Components;
+using ComponentSystem.Components;
+using UnityEngine;
 
 namespace Player.PlayerFiniteStateMachine.States
 {
@@ -8,23 +10,25 @@ namespace Player.PlayerFiniteStateMachine.States
             : base(player, stateMachine, hashedAnimatorParam)
         {
             player.AnimationEventHandler.OnShotFrame += AnimationShotFrameTrigger;
-        }
-        
-        public override void Enter()
-        {
-            base.Enter();
-            _movement.SetVelocityZero();
+            combat = player.Core.GetCoreComponent<CombatComponent>();
         }
 
         protected override void AnimationFinishTrigger()
         {
-            player.InputHandler.FinishAttack();
-            stateMachine.SwitchState(PlayerStateType.Idle);
+            if (player.InputHandler.AttackCanceled)
+            {
+                SwitchState(player.InputHandler.IsMoving ? PlayerStateType.Move : PlayerStateType.Idle);
+            }
+            else
+            {
+                SwitchState(PlayerStateType.Aim);
+            }
         }
 
         private void AnimationShotFrameTrigger()
         {
-            player.Weapon.Use();
+            player.Animator.SetTrigger(player.AttackParam);
+            combat.Attack();
         }
     }
 }

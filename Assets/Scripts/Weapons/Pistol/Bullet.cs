@@ -1,8 +1,7 @@
-﻿using System;
-using Interfaces;
+﻿using Interfaces;
 using UnityEngine;
 
-namespace Weapons
+namespace Weapons.Pistol
 {
     public class Bullet : MonoBehaviour, IPoolObject
     {

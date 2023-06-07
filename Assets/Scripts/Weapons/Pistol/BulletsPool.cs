@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Weapons
+namespace Weapons.Pistol
 {
     public class BulletsPool : MonoBehaviour
     {

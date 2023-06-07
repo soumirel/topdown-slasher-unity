@@ -20,7 +20,7 @@
                     "id": "4e049f60-fc74-4327-92ee-7508ceeb0faf",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "",
                     "initialStateCheck": true
                 },
                 {
@@ -28,6 +28,15 @@
                     "type": "Value",
                     "id": "9abd04b3-cc4d-48f2-9685-e522b7f2a4fa",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Aim",
+                    "type": "Value",
+                    "id": "92516c34-4dd8-41c6-b23a-1b17b94bf6a3",
+                    "expectedControlType": "Double",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -159,7 +168,7 @@
                     "name": "",
                     "id": "74049a59-be11-4350-aae2-f6e601440663",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Hold(duration=0.1)",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Attack",
@@ -185,6 +194,17 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "SightPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a77e35f-f83b-45d9-8c7b-bff3a395eec4",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Hold(duration=0.1)",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

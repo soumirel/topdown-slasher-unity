@@ -13,6 +13,21 @@ namespace Player.PlayerFiniteStateMachine.States
         {
             _movementSpeed = player.Data.MovementSpeed;
         }
+
+        protected override void CheckTransitions()
+        {
+            base.CheckTransitions();
+            
+            if (player.InputHandler.IsMoving)
+            {
+                SwitchState(PlayerStateType.Idle);
+            }
+
+            if (player.InputHandler.AttackPerformed && combat.IsReady)
+            {
+                SwitchState(PlayerStateType.Aim);
+            }
+        }
         
         public override void LogicUpdate()
         {
@@ -21,23 +36,13 @@ namespace Player.PlayerFiniteStateMachine.States
             player.Animator.SetFloat(player.SightXParam ,player.InputHandler.SightDirection.x);
             player.Animator.SetFloat(player.SightYParam ,player.InputHandler.SightDirection.y);
             
-            player.Weapon.Rotate(player.InputHandler.WorldSightPosition);
-
-            if (player.InputHandler.MovementDirection.sqrMagnitude == 0)
-            {
-                stateMachine.SwitchState(PlayerStateType.Idle);
-            }
-
-            if (player.InputHandler.AttackInput && player.Weapon.IsReady)
-            {
-                stateMachine.SwitchState(PlayerStateType.Attack);
-            }
+            combat.CurrentWeapon.Rotate(player.InputHandler.WorldSightPosition);
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-            _movement.SetVelocity(_movementSpeed, player.InputHandler.MovementDirection);
+            movement.SetVelocity(_movementSpeed, player.InputHandler.MovementDirection);
         }
     }
 }

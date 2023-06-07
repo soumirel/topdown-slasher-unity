@@ -9,27 +9,33 @@ namespace Player.PlayerFiniteStateMachine.States
 
         public override void Enter()
         {
-            _movement.SetVelocityZero();
+            base.Enter();
+            movement.SetVelocityZero();
+        }
+
+        protected override void CheckTransitions()
+        {
+            base.CheckTransitions();
+            if (player.InputHandler.AttackPerformed && combat.IsReady)
+            {
+                SwitchState(PlayerStateType.Aim);
+            }
+            
+            if (player.InputHandler.IsMoving)
+            {
+                SwitchState(PlayerStateType.Move);
+            }
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-
-            if (player.InputHandler.AttackInput && player.Weapon.IsReady)
-            {
-                stateMachine.SwitchState(PlayerStateType.Attack);
-            }
             
-            if (player.InputHandler.MovementDirection.sqrMagnitude != 0)
-            {
-                stateMachine.SwitchState(PlayerStateType.Move);
-            }
-
             player.Animator.SetFloat(player.SightXParam, player.InputHandler.SightDirection.x);
             player.Animator.SetFloat(player.SightYParam, player.InputHandler.SightDirection.y);
             
-            player.Weapon.Rotate(player.InputHandler.WorldSightPosition);
+            //TODO: Поворот для всех оружий сразу
+            combat.CurrentWeapon.Rotate(player.InputHandler.WorldSightPosition);
         }
     }
 }

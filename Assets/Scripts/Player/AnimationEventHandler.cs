@@ -5,9 +5,14 @@ namespace Player
 {
     public class AnimationEventHandler : MonoBehaviour
     {
+        public event Action OnAnimationStart;
         public event Action OnAnimationFinish;
-
         public event Action OnShotFrame;
+
+        public void AnimationStartTrigger()
+        {
+            OnAnimationStart?.Invoke();
+        }
 
         public void AnimationFinishedTrigger()
         {

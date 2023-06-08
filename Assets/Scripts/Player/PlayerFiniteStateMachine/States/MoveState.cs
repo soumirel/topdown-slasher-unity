@@ -27,7 +27,7 @@ namespace Player.PlayerFiniteStateMachine.States
         {
             base.PhysicsUpdate();
             
-            MovementCore.SetVelocity(_movementSpeed, player.InputHandler.MovementDirection);
+            Movement?.SetVelocity(_movementSpeed, player.InputHandler.MovementDirection);
         }
     }
 }

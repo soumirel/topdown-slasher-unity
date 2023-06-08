@@ -12,7 +12,7 @@ namespace Player.PlayerFiniteStateMachine.States
         {
             base.Enter();
             
-            MovementCore.SetVelocityZero();
+            Movement?.SetVelocityZero();
         }
 
         protected override void CheckTransitions()

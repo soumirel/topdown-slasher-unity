@@ -1204,6 +1204,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Coordinates: {x: 0, y: 0.8}
+  MaxDirectionX: 1
+  MinDirectionX: 0.45
+  MaxDirectionY: 1
+  MinDirectionY: -1
   a: 1.42
   b: 1.88
   Ellipse: {fileID: 808739483}
@@ -1501,7 +1505,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002509168433674756}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.47, y: -0.22, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1732,6 +1736,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hand: {fileID: 2002509168433674756}
+  _maxDirectionX: 1
+  _minDirectionX: 0.45
+  _maxDirectionY: 1
+  _minDirectionY: -1
   _ellipseTrajectory_a: 1.42
   _ellipseTrajectory_b: 1.88
 --- !u!1 &8426747786652164864

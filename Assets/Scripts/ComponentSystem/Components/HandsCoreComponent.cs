@@ -46,14 +46,14 @@ namespace ComponentSystem.Components
             var radiansAngle = Mathf.Atan2(direction.y, direction.x);
             var handTransform = _hand.transform;
 
-            var newPosition = (Vector2)handTransform.parent.position +
-                              CalculatePosition(radiansAngle);
+            // var newPosition = (Vector2)handTransform.parent.position + CalculatePosition(radiansAngle);
+            var newPosition = CalculatePosition(radiansAngle);
 
-            handTransform.position = newPosition;
+            handTransform.localPosition = newPosition;
 
             var rotationAngle = CalculateRotation(radiansAngle);
 
-            handTransform.rotation = Quaternion.Euler(0, 0, rotationAngle + 90f);
+            handTransform.localRotation = Quaternion.Euler(0, 0, rotationAngle + 90f);
         }
     }
 }

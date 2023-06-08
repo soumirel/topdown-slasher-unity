@@ -23,17 +23,6 @@ namespace Player.PlayerFiniteStateMachine.States
             }
         }
 
-        public override void Enter()
-        {
-            base.Enter();
-        }
-
-        public override void LogicUpdate()
-        {
-            base.LogicUpdate();
-
-        }
-
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();

@@ -24,10 +24,5 @@ namespace Player.PlayerFiniteStateMachine.States
                 SwitchState(PlayerStateType.Move);
             }
         }
-
-        public override void LogicUpdate()
-        {
-            base.LogicUpdate();
-        }
     }
 }

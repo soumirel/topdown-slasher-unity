@@ -68,19 +68,13 @@ namespace ComponentSystem
             }        
         }
         
-        // public void ApplyFacingDirection(int xDirection)
-        // {
-        //     if (xDirection != 0 && xDirection != FacingDirection)
-        //     {
-        //         Flip();
-        //     }
-        // }
+        public bool IfNeedTurn(int xDirection)
+        {
+            return xDirection != FacingDirection;
+        }
 
         public void Turn()
         {
-            // Debug.Log(nameof(Turn));
-            // OnXTurn?.Invoke();
-            
             FacingDirection *= -1;
             _rb.transform.Rotate(0.0f, 180.0f, 0.0f);
         }

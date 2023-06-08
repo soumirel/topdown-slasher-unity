@@ -45,9 +45,9 @@ namespace Player.PlayerFiniteStateMachine.States.SuperStates
 
             ApplyTurnDirection();
 
-            // Hands?.ChangePosition(
-            //     player.InputHandler.SightDirection
-            // );
+            Hands?.ChangePosition(
+                player.InputHandler.SightDirection
+            );
         }
 
         private void ApplyTurnDirection()

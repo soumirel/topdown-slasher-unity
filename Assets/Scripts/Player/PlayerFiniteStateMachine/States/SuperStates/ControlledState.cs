@@ -1,16 +1,24 @@
-﻿using ComponentSystem.Components;
+﻿using ComponentSystem;
+using ComponentSystem.Components;
 using UnityEngine;
 
 namespace Player.PlayerFiniteStateMachine.States.SuperStates
 {
     public class ControlledState : PlayerState
     {
+        protected HandsCoreComponent Hands =>
+            _handsCoreComponent
+                ? _handsCoreComponent
+                : core.GetCoreComponent(ref _handsCoreComponent);
+
+        protected MovementCoreComponent Movement =>
+            _movement ? _movement : core.GetCoreComponent(ref _movement);
+
+
         private HandsCoreComponent _handsCoreComponent;
+        private MovementCoreComponent _movement;
 
         private bool _isTurning;
-
-        private int i_start;
-        private int i_finish;
 
         protected ControlledState(PlayerController player, PlayerStateMachine stateMachine, int hashedAnimatorParam)
             : base(player, stateMachine, hashedAnimatorParam)
@@ -21,14 +29,14 @@ namespace Player.PlayerFiniteStateMachine.States.SuperStates
         public override void Enter()
         {
             base.Enter();
-            player.AnimationEventHandler.OnTurnFinish += FinishTurn;
+            animationEventHandler.OnTurnFinish += FinishTurn;
             _isTurning = false;
         }
 
         public override void Exit()
         {
             base.Exit();
-            player.AnimationEventHandler.OnTurnFinish -= FinishTurn;
+            animationEventHandler.OnTurnFinish -= FinishTurn;
         }
 
         public override void LogicUpdate()
@@ -37,26 +45,26 @@ namespace Player.PlayerFiniteStateMachine.States.SuperStates
 
             ApplyTurnDirection();
 
-            _handsCoreComponent.ChangePosition(
-                player.InputHandler.SightDirection
-            );
+            // Hands?.ChangePosition(
+            //     player.InputHandler.SightDirection
+            // );
         }
 
         private void ApplyTurnDirection()
         {
-            if (MovementCore.IfNeedTurn((int) Mathf.Sign(
+            if ((bool) Movement?.IfNeedTurn((int)Mathf.Sign(
                     player.InputHandler.SightDirection.x)) && !_isTurning)
             {
                 _isTurning = true;
-                player.Animator.SetBool(player.B_TURN, true);
+                animator.SetBool(player.B_TURN, true);
             }
         }
-        
+
 
         private void FinishTurn()
         {
-            player.Animator.SetBool(player.B_TURN, false);
-            MovementCore.Turn();
+            animator.SetBool(player.B_TURN, false);
+            Movement?.Turn();
             _isTurning = false;
         }
     }

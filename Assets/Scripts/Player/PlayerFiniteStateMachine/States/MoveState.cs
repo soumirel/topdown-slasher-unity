@@ -1,14 +1,13 @@
-﻿
-using ComponentSystem;
+﻿using Player.PlayerFiniteStateMachine.States.SuperStates;
 using UnityEngine;
 
 namespace Player.PlayerFiniteStateMachine.States
 {
-    public class MoveState : PlayerState
+    public class MoveState : ControlledState
     {
         private float _movementSpeed;
 
-        public MoveState(PlayerController player, PlayerStateMachine stateMachine, int hashedAnimatorParam)
+        public MoveState(PlayerController player, PlayerStateMachine stateMachine, int hashedAnimatorParam) 
             : base(player, stateMachine, hashedAnimatorParam)
         {
             _movementSpeed = player.Data.MovementSpeed;
@@ -18,31 +17,28 @@ namespace Player.PlayerFiniteStateMachine.States
         {
             base.CheckTransitions();
             
-            if (player.InputHandler.IsMoving)
+            if (!player.InputHandler.IsMoving)
             {
                 SwitchState(PlayerStateType.Idle);
             }
-
-            if (player.InputHandler.AttackPerformed && combat.IsReady)
-            {
-                SwitchState(PlayerStateType.Aim);
-            }
         }
-        
+
+        public override void Enter()
+        {
+            base.Enter();
+        }
+
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            
-            player.Animator.SetFloat(player.SightXParam ,player.InputHandler.SightDirection.x);
-            player.Animator.SetFloat(player.SightYParam ,player.InputHandler.SightDirection.y);
-            
-            combat.CurrentWeapon.Rotate(player.InputHandler.WorldSightPosition);
+
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-            movement.SetVelocity(_movementSpeed, player.InputHandler.MovementDirection);
+            
+            MovementCore.SetVelocity(_movementSpeed, player.InputHandler.MovementDirection);
         }
     }
 }

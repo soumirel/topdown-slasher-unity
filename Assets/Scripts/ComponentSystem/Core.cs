@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ComponentSystem;
 using UnityEngine;
-using Component = ComponentSystem.Component;
 
 namespace Components
 {
     public class Core : MonoBehaviour
     {
-        private List<Component> _components;
+        private List<CoreComponent> _components;
 
         public void Awake()
         {
-            _components = new List<Component>();
+            _components = new List<CoreComponent>();
             
-            Component[] components = GetComponentsInChildren<Component>();
+            CoreComponent[] components = GetComponentsInChildren<CoreComponent>();
             
             _components.AddRange(components);
         }
 
-        public T GetCoreComponent<T>() where T : Component
+        public T GetCoreComponent<T>() where T : CoreComponent
         {
             var component = _components.OfType<T>().FirstOrDefault();
 

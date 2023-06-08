@@ -1,8 +1,9 @@
 ﻿using ComponentSystem;
+using Player.PlayerFiniteStateMachine.States.SuperStates;
 
 namespace Player.PlayerFiniteStateMachine.States
 {
-    public class IdleState : PlayerState
+    public class IdleState : ControlledState
     {
         public IdleState(PlayerController player, PlayerStateMachine stateMachine, int hashedAnimatorParam) 
             : base(player, stateMachine, hashedAnimatorParam) {}
@@ -10,17 +11,14 @@ namespace Player.PlayerFiniteStateMachine.States
         public override void Enter()
         {
             base.Enter();
-            movement.SetVelocityZero();
+            
+            MovementCore.SetVelocityZero();
         }
 
         protected override void CheckTransitions()
         {
             base.CheckTransitions();
-            if (player.InputHandler.AttackPerformed && combat.IsReady)
-            {
-                SwitchState(PlayerStateType.Aim);
-            }
-            
+
             if (player.InputHandler.IsMoving)
             {
                 SwitchState(PlayerStateType.Move);
@@ -30,12 +28,6 @@ namespace Player.PlayerFiniteStateMachine.States
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            
-            player.Animator.SetFloat(player.SightXParam, player.InputHandler.SightDirection.x);
-            player.Animator.SetFloat(player.SightYParam, player.InputHandler.SightDirection.y);
-            
-            //TODO: Поворот для всех оружий сразу
-            combat.CurrentWeapon.Rotate(player.InputHandler.WorldSightPosition);
         }
     }
 }

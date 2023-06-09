@@ -39,7 +39,7 @@ namespace Player.PlayerFiniteStateMachine
 #if UNITY_EDITOR
             Debug.Log(this.GetType());
 #endif
-            animator.SetBool(_hashedAnimatorParam, true);
+            StartMainAnimation();
             LogicUpdate();
             PhysicsUpdate();
         }
@@ -49,20 +49,26 @@ namespace Player.PlayerFiniteStateMachine
             _stateMachine.SwitchState(type);
         }
 
-        protected virtual void CheckTransitions()
-        {
-        }
+        protected virtual void CheckTransitions() {}
 
         public virtual void LogicUpdate()
         {
             CheckTransitions();
         }
 
-        public virtual void PhysicsUpdate()
-        {
-        }
+        public virtual void PhysicsUpdate() {}
 
         public virtual void Exit()
+        {
+            StopMainAnimation();
+        }
+
+        protected void StartMainAnimation()
+        {
+            animator.SetBool(_hashedAnimatorParam, true);
+        }
+
+        protected void StopMainAnimation()
         {
             animator.SetBool(_hashedAnimatorParam, false);
         }

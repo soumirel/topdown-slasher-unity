@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
  
 [ExecuteInEditMode]
@@ -21,6 +22,7 @@ public class Ellipse : MonoBehaviour
         UpdateEllipse();
     }
      
+    [Obsolete("Obsolete")]
     public void UpdateEllipse()
     {
         if ( self_lineRenderer == null)

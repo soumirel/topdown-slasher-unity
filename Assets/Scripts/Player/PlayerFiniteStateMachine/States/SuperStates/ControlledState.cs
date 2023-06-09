@@ -45,25 +45,35 @@ namespace Player.PlayerFiniteStateMachine.States.SuperStates
 
             ApplyTurnDirection();
 
-            Hands?.ChangePosition(
-                player.InputHandler.SightDirection
-            );
+            if (!_isTurning)
+            {
+                Hands?.ChangePosition(
+                    player.InputHandler.SightDirection);
+            }
         }
 
         private void ApplyTurnDirection()
         {
             if ((bool) Movement?.IfNeedTurn((int)Mathf.Sign(
-                    player.InputHandler.SightDirection.x)) && !_isTurning)
+                    inputHandler.SightDirection.x)) && !_isTurning)
             {
                 _isTurning = true;
-                animator.SetBool(player.B_TURN, true);
+                StopMainAnimation();
+                animator.SetBool(player.TURN, true);
             }
+
+            if (_isTurning)
+            {
+                Hands.Turn(inputHandler.SightDirection);
+            }
+            
         }
 
 
         private void FinishTurn()
         {
-            animator.SetBool(player.B_TURN, false);
+            animator.SetBool(player.TURN, false);
+            StartMainAnimation();
             Movement?.Turn();
             _isTurning = false;
         }

@@ -23,7 +23,6 @@ namespace Player
         public readonly int IDLE = Animator.StringToHash("idle");
         public readonly int MOVE = Animator.StringToHash("walk");
         public readonly int TURN = Animator.StringToHash("turn");
-        public readonly int B_TURN = Animator.StringToHash("b_turn");
 
         private int _currentHashedAnimationName;
 

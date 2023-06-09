@@ -94,8 +94,15 @@ namespace ComponentSystem.Components
                 var radiansAngle = Mathf.Atan2(targetPosition.y, targetPosition.x);
 
                 var newPosition = Vector2.Lerp(prevPosition, 
-                    CalculatePosition(radiansAngle), Time.deltaTime * 5f);
+                    CalculatePosition(radiansAngle), Time.deltaTime * 14f);
                 _handTransform.localPosition = newPosition;
+                
+                var oldAngle = _handTransform.localRotation;
+                var rotationAngle = CalculateRotation(radiansAngle);
+                _handTransform.localRotation = Quaternion.Lerp(oldAngle,
+                    Quaternion.Euler(0, 0, rotationAngle),
+                    Time.deltaTime * 14f);
+                
                 yield return new WaitForEndOfFrame();
             }
         }

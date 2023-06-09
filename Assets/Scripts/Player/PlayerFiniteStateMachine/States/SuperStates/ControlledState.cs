@@ -23,20 +23,19 @@ namespace Player.PlayerFiniteStateMachine.States.SuperStates
         protected ControlledState(PlayerController player, PlayerStateMachine stateMachine, int hashedAnimatorParam)
             : base(player, stateMachine, hashedAnimatorParam)
         {
-            _handsCoreComponent = player.Core.GetCoreComponent<HandsCoreComponent>();
         }
 
         public override void Enter()
         {
             base.Enter();
-            animationEventHandler.OnTurnFinish += FinishTurn;
+            Visuals.OnTurnFinish += FinishTurn;
             _isTurning = false;
         }
 
         public override void Exit()
         {
+            Visuals.OnTurnFinish -= FinishTurn;
             base.Exit();
-            animationEventHandler.OnTurnFinish -= FinishTurn;
         }
 
         public override void LogicUpdate()
@@ -54,27 +53,17 @@ namespace Player.PlayerFiniteStateMachine.States.SuperStates
 
         private void ApplyTurnDirection()
         {
-            if ((bool) Movement?.IfNeedTurn((int)Mathf.Sign(
-                    inputHandler.SightDirection.x)) && !_isTurning)
+            if (core.CheckTurnNeed(inputHandler.SightDirection) && !_isTurning)
             {
                 _isTurning = true;
-                StopMainAnimation();
-                animator.SetBool(player.TURN, true);
+                core.Turn();
             }
-
-            if (_isTurning)
-            {
-                Hands.Turn(inputHandler.SightDirection);
-            }
-            
         }
 
 
         private void FinishTurn()
         {
-            animator.SetBool(player.TURN, false);
             StartMainAnimation();
-            Movement?.Turn();
             _isTurning = false;
         }
     }

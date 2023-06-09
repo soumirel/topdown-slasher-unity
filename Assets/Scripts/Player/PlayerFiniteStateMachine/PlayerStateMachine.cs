@@ -9,11 +9,15 @@ namespace Player.PlayerFiniteStateMachine
     public class PlayerStateMachine : MonoBehaviour
     {
         [SerializeField] private PlayerController _player;
-        
-        private Dictionary<PlayerStateType, PlayerState> _states
-            = new Dictionary<PlayerStateType, PlayerState>();
+
+        private Dictionary<PlayerStateType, PlayerState> _states;
 
         private PlayerState _currentState;
+
+        public void Awake()
+        {
+            _states = new Dictionary<PlayerStateType, PlayerState>();
+        }
 
         public void Start()
         {

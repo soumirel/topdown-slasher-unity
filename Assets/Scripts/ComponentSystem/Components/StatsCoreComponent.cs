@@ -11,8 +11,9 @@ namespace ComponentSystem.Components
         
         private Dictionary<StatType, Stat> _stats;
 
-        public void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _stats = new Dictionary<StatType, Stat>();
             
             foreach (var statSettings in _statsSettings)

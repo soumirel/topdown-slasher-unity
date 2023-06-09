@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1630196482345019964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3220474237670456099}
+  - component: {fileID: 5343968700420145547}
+  m_Layer: 0
+  m_Name: Visuals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3220474237670456099
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630196482345019964}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3756851625853583142}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5343968700420145547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630196482345019964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228b152afa15498cbb6e813336deb506, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1727416078062739966
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +354,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002509168433674756}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.35, y: -0.100000024, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -413,6 +457,7 @@ Transform:
   - {fileID: 1711069175910067675}
   - {fileID: 1299120709893662422}
   - {fileID: 7296255069564491554}
+  - {fileID: 3220474237670456099}
   m_Father: {fileID: 1727416078062739963}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -561,11 +606,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10eeef5a72ab43c9b2bf36f211bd703a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _handTransform: {fileID: 0}
-  _maxDirectionX: 1
-  _minDirectionX: 0.5
-  _maxDirectionY: 1
-  _minDirectionY: -1
+  _handTransform: {fileID: 914471069958247127}
+  _upClamp: {x: 1, y: 1}
+  _downClamp: {x: 0.5, y: -1}
   _ellipseTrajectory_a: 1.42
   _ellipseTrajectory_b: 1.88
 --- !u!1 &8426747786652164864

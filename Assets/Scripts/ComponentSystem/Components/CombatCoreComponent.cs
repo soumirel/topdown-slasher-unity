@@ -13,8 +13,9 @@ namespace ComponentSystem.Components
         public bool IsReady { get; private set; }
         public bool IsAimed { get; private set; }
 
-        public void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _weapons ??= new List<Weapon>();
             if (_weapons.Count > 0)
             {

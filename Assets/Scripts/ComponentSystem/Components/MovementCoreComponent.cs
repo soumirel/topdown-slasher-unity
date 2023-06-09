@@ -9,16 +9,15 @@ namespace ComponentSystem
 
         public bool CanSetVelocity { get; set; }
         public Vector2 Velocity { get; private set; }
-        public int FacingDirection { get; private set; }
-        
+
         private Vector2 _appliedVelocity;
 
-        public void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _rb = GetComponentInParent<Rigidbody2D>();
             
             CanSetVelocity = true;
-            FacingDirection = 1;
         }
         
         protected override void LogicUpdate()
@@ -68,18 +67,6 @@ namespace ComponentSystem
             }        
         }
         
-        public bool IfNeedTurn(int xDirection)
-        {
-            return xDirection != FacingDirection;
-        }
-
-        public void Turn()
-        {
-            FacingDirection *= -1;
-            _rb.transform.Rotate(0.0f, 180.0f, 0.0f);
-        }
-        
-
         #endregion
     }
 }

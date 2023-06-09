@@ -14,8 +14,13 @@ namespace Player.PlayerFiniteStateMachine
         protected readonly PlayerController player;
         protected readonly Core core;
         protected readonly PlayerInputHandler inputHandler;
-        protected readonly Animator animator;
         protected readonly AnimationEventHandler animationEventHandler;
+        
+        protected VisualsCoreComponent Visuals =>
+            _visuals
+                ? _visuals
+                : core.GetCoreComponent(ref _visuals);
+        private VisualsCoreComponent _visuals;
         
         private readonly PlayerStateMachine _stateMachine;
         private readonly int _hashedAnimatorParam;
@@ -30,7 +35,6 @@ namespace Player.PlayerFiniteStateMachine
 
             core = this.player.Core;
             inputHandler = this.player.InputHandler;
-            animator = this.player.Animator;
             animationEventHandler = this.player.AnimationEventHandler;
         }
 
@@ -58,19 +62,11 @@ namespace Player.PlayerFiniteStateMachine
 
         public virtual void PhysicsUpdate() {}
 
-        public virtual void Exit()
-        {
-            StopMainAnimation();
-        }
+        public virtual void Exit() {}
 
         protected void StartMainAnimation()
         {
-            animator.SetBool(_hashedAnimatorParam, true);
-        }
-
-        protected void StopMainAnimation()
-        {
-            animator.SetBool(_hashedAnimatorParam, false);
+            Visuals?.SetAnimation(_hashedAnimatorParam);
         }
     }
 }

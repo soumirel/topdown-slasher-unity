@@ -176,10 +176,10 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 0f1321ec935e611479c4871c9d5c40ee, type: 2}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: turn_duration
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
-  m_TimeParameter: 
+  m_TimeParameter: turn_duration
 --- !u!1102 &-2096403307758460153
 AnimatorState:
   serializedVersion: 6
@@ -349,6 +349,12 @@ AnimatorController:
   - m_Name: turn
     m_Type: 4
     m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: turn_duration
+    m_Type: 1
+    m_DefaultFloat: 10
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
@@ -627,28 +633,28 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 736332660365655446}
-    m_Position: {x: 230, y: -70, z: 0}
+    m_Position: {x: 240, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -9211949137846158431}
-    m_Position: {x: 230, y: 30, z: 0}
+    m_Position: {x: 240, y: 30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4031002978442167075}
-    m_Position: {x: 230, y: 80, z: 0}
+    m_Position: {x: 240, y: 80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2096403307758460153}
-    m_Position: {x: 230, y: 130, z: 0}
+    m_Position: {x: 240, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6476774060386133750}
-    m_Position: {x: 230, y: 180, z: 0}
+    m_Position: {x: 240, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3347526754929369159}
-    m_Position: {x: 230, y: -20, z: 0}
+    m_Position: {x: 240, y: -20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -459506234371133354}
-    m_Position: {x: 230, y: 230, z: 0}
+    m_Position: {x: 240, y: 230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4505938485731742882}
-    m_Position: {x: 230, y: 280, z: 0}
+    m_Position: {x: 240, y: 280, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions:

@@ -26,12 +26,12 @@ namespace ComponentSystem.Components
         protected override void Start()
         {
             base.Start();
-            Visuals.OnTurnFinish += FinishTurn;
+            //Visuals.OnTurnFinish += FinishTurn;
         }
 
         private void OnDisable()
         {
-            Visuals.OnTurnFinish -= FinishTurn;
+            //Visuals.OnTurnFinish -= FinishTurn;
         }
 
 
@@ -81,31 +81,36 @@ namespace ComponentSystem.Components
 
         public override void Turn()
         {
-            var targetPosition = new Vector2(-_handTransform.localPosition.x,
-                _handTransform.localPosition.y);
-            StartCoroutine(TurnCoroutine(targetPosition));
+            var targetPosition = new Vector2(-_handTransform.localPosition.x, _handTransform.localPosition.y);
+            var duration = 0.5f; // Длительность анимации в секундах
+            var startTime = Time.time;
+            var startPosition = _handTransform.localPosition;
+
+            StartCoroutine(TurnCoroutine(startPosition, targetPosition, startTime, duration));
         }
 
-        private IEnumerator TurnCoroutine(Vector2 targetPosition)
+        private IEnumerator TurnCoroutine(Vector2 startPosition, Vector2 targetPosition, float startTime, float duration)
         {
-            while (targetPosition != (Vector2)_handTransform.localPosition)
+            while (Time.time < startTime + duration)
             {
-                Vector2 prevPosition = _handTransform.localPosition;
-                var radiansAngle = Mathf.Atan2(targetPosition.y, targetPosition.x);
+                var elapsedTime = Time.time - startTime;
+                var t = elapsedTime / duration;
 
-                var newPosition = Vector2.Lerp(prevPosition, 
-                    CalculatePosition(radiansAngle), Time.deltaTime * 14f);
+                var newPosition = Vector2.Lerp(startPosition, targetPosition, t);
                 _handTransform.localPosition = newPosition;
-                
-                var oldAngle = _handTransform.localRotation;
+
+                var radiansAngle = Mathf.Atan2(targetPosition.y, targetPosition.x);
                 var rotationAngle = CalculateRotation(radiansAngle);
-                _handTransform.localRotation = Quaternion.Lerp(oldAngle,
-                    Quaternion.Euler(0, 0, rotationAngle),
-                    Time.deltaTime * 14f);
-                
-                yield return new WaitForEndOfFrame();
+                _handTransform.localRotation = Quaternion.Euler(0, 0, rotationAngle);
+
+                yield return null;
             }
+
+            // Устанавливаем конечную позицию и завершаем анимацию
+            _handTransform.localPosition = targetPosition;
+            FinishTurn();
         }
+
 
         private void FinishTurn()
         {

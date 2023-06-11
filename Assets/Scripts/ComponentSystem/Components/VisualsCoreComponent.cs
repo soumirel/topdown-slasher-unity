@@ -6,6 +6,7 @@ namespace ComponentSystem.Components
 {
     public class VisualsCoreComponent : CoreComponent
     {
+        public event Action<float> OnTurnStart;
         public event Action OnTurnFinish;
         
         private SpriteRenderer _spriteRenderer;
@@ -28,6 +29,7 @@ namespace ComponentSystem.Components
 
         public override void Turn()
         {
+            OnTurnStart?.Invoke(10f);
             SetAnimation(_turnAnimatorParam);
         }
 

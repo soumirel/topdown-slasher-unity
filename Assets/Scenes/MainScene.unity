@@ -8669,6 +8669,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 96317495, guid: 86fec15cea0b7444bbeb718a10b6a594, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 96317495, guid: 86fec15cea0b7444bbeb718a10b6a594, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 914471069958247127, guid: 86fec15cea0b7444bbeb718a10b6a594, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1727416078062739963, guid: 86fec15cea0b7444bbeb718a10b6a594, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -8716,6 +8728,18 @@ PrefabInstance:
     - target: {fileID: 1727416078062739966, guid: 86fec15cea0b7444bbeb718a10b6a594, type: 3}
       propertyPath: m_Name
       value: NewPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 5406096436353737754, guid: 86fec15cea0b7444bbeb718a10b6a594, type: 3}
+      propertyPath: _ellipseTrajectory_a
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566201500816637609, guid: 86fec15cea0b7444bbeb718a10b6a594, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566201500816637609, guid: 86fec15cea0b7444bbeb718a10b6a594, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86fec15cea0b7444bbeb718a10b6a594, type: 3}

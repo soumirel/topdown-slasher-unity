@@ -7,16 +7,14 @@ namespace Player.PlayerFiniteStateMachine.States
     {
         private float _movementSpeed;
 
-        public MoveState(PlayerController player, PlayerStateMachine stateMachine, int hashedAnimatorParam) 
+        public MoveState(Player player, PlayerStateMachine stateMachine, int hashedAnimatorParam) 
             : base(player, stateMachine, hashedAnimatorParam)
         {
-            _movementSpeed = player.Data.MovementSpeed;
+            _movementSpeed = player.MovementSpeed;
         }
 
         protected override void CheckTransitions()
         {
-            base.CheckTransitions();
-            
             if (!player.InputHandler.IsMoving)
             {
                 SwitchState(PlayerStateType.Idle);
@@ -27,7 +25,7 @@ namespace Player.PlayerFiniteStateMachine.States
         {
             base.PhysicsUpdate();
             
-            Movement?.SetVelocity(_movementSpeed, player.InputHandler.MovementDirection);
+            movement.Move(inputHandler.MovementDirection);
         }
     }
 }

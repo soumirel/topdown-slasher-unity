@@ -1,37 +1,25 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using ComponentSystem;
+using Interfaces;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace ComponentSystem.Components
+namespace Components
 {
-    public class HandsCoreComponent : CoreComponent
+    public class Hands : MonoBehaviour
     {
         [SerializeField] private Transform _handTransform;
         
-        // TODO: Перенести настройку параметров
         [SerializeField] private Vector2 _upClamp;
         [SerializeField] private Vector2 _downClamp;
 
         [SerializeField] public float _ellipseTrajectory_a = 1.42f;
         [SerializeField] public float _ellipseTrajectory_b = 1.88f;
-        
-        private VisualsCoreComponent Visuals =>
-            _visuals
-                ? _visuals
-                : core.GetCoreComponent(ref _visuals);
-        private VisualsCoreComponent _visuals;
 
+        private ITurnable _turnable;
 
-        protected override void Start()
+        public void Initialize(ITurnable turnable)
         {
-            base.Start();
-            //Visuals.OnTurnFinish += FinishTurn;
-        }
-
-        private void OnDisable()
-        {
-            //Visuals.OnTurnFinish -= FinishTurn;
+            _turnable = turnable;
         }
 
 
@@ -49,16 +37,19 @@ namespace ComponentSystem.Components
         {
             var rotation = Mathf.Atan2(-_ellipseTrajectory_a * Mathf.Cos(radiansAngle),
                 _ellipseTrajectory_b * Mathf.Sin(radiansAngle));
-            return rotation * Mathf.Rad2Deg + 90f * core.FacingDirection;
+            
+            return rotation * Mathf.Rad2Deg + 90f * _turnable.FacingDirection;
         }
 
 
         // Line of sight constraint to constrain hand position on an ellipse
         private Vector2 ClampDirection(Vector2 direction)
         {
-            var x = Mathf.Clamp(direction.x, _downClamp.x * core.FacingDirection,
-                _upClamp.x * core.FacingDirection);
+            var x = Mathf.Clamp(direction.x, _downClamp.x * _turnable.FacingDirection,
+                _upClamp.x * _turnable.FacingDirection);
             var y = Mathf.Clamp(direction.y, _downClamp.y, _upClamp.y);
+            
+           
             return new Vector2(x, y);
         }
 
@@ -79,10 +70,10 @@ namespace ComponentSystem.Components
                 Time.deltaTime * 20);
         }
 
-        public override void Turn()
+        public void Turn()
         {
             var targetPosition = new Vector2(-_handTransform.localPosition.x, _handTransform.localPosition.y);
-            var duration = 0.5f; // Длительность анимации в секундах
+            var duration = _turnable.TurnSpeedSeconds;
             var startTime = Time.time;
             var startPosition = _handTransform.localPosition;
 
@@ -108,13 +99,6 @@ namespace ComponentSystem.Components
 
             // Устанавливаем конечную позицию и завершаем анимацию
             _handTransform.localPosition = targetPosition;
-            FinishTurn();
-        }
-
-
-        private void FinishTurn()
-        {
-            StopAllCoroutines();
         }
     }
 }

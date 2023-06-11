@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
+using ComponentSystem;
 using ComponentSystem.Stats;
 using Data;
 using UnityEngine;
 
-namespace ComponentSystem.Components
+namespace Components
 {
-    public class StatsCoreComponent : CoreComponent
+    public class StatsComponent : MonoBehaviour
     {
-        [SerializeField] private List<StatData> _statsSettings;
+        [SerializeField] private List<StatDataSettings> _statsSettings;
         
         private Dictionary<StatType, Stat> _stats;
 
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
             _stats = new Dictionary<StatType, Stat>();
             
             foreach (var statSettings in _statsSettings)

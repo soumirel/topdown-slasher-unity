@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Data
 {
     [CreateAssetMenu(fileName ="StatData", menuName ="Data/Stat Data")]
-    public class StatData : ScriptableObject
+    public class StatDataSettings : ScriptableObject
     {
         [SerializeField] private StatType _statType = StatType.None;
 

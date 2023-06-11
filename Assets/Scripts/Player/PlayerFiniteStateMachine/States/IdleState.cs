@@ -5,21 +5,19 @@ namespace Player.PlayerFiniteStateMachine.States
 {
     public class IdleState : ControlledState
     {
-        public IdleState(PlayerController player, PlayerStateMachine stateMachine, int hashedAnimatorParam) 
+        public IdleState(Player player, PlayerStateMachine stateMachine, int hashedAnimatorParam) 
             : base(player, stateMachine, hashedAnimatorParam) {}
 
         public override void Enter()
         {
             base.Enter();
             
-            Movement?.SetVelocityZero();
+            movement.Stop();
         }
 
         protected override void CheckTransitions()
         {
-            base.CheckTransitions();
-
-            if (player.InputHandler.IsMoving)
+            if (inputHandler.IsMoving)
             {
                 SwitchState(PlayerStateType.Move);
             }

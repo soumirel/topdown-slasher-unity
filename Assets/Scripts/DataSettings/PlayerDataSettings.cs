@@ -3,15 +3,18 @@
 namespace Data
 {
     [CreateAssetMenu(fileName ="PlayerData", menuName ="Data/Player Data")]
-    public class PlayerData : ScriptableObject
+    public class PlayerDataSettings : ScriptableObject
     {
-        [Header("Move State")]
-        [SerializeField] private float _movementSpeed;
         
-        [Header("Stats")]
+        [SerializeField] private float _movementSpeed;
+        [SerializeField] private float _turnSpeed;
+        
+        
         [SerializeField] private int _maxHealthPoint;
 
+        
         public int MaxHealthPoints => _maxHealthPoint;
         public float MovementSpeed => _movementSpeed;
+        public float TurnSpeed => _turnSpeed;
     }
 }

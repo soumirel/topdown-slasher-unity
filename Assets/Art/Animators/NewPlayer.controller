@@ -176,7 +176,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 0f1321ec935e611479c4871c9d5c40ee, type: 2}
   m_Tag: 
-  m_SpeedParameter: turn_duration
+  m_SpeedParameter: turn_speed_multiplier
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: turn_duration
@@ -352,9 +352,9 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: turn_duration
+  - m_Name: turn_speed_multiplier
     m_Type: 1
-    m_DefaultFloat: 10
+    m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
@@ -411,7 +411,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 7f8a3251f0dcca34595c5ba48ca77e63, type: 2}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: turn_speed_multiplier
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 

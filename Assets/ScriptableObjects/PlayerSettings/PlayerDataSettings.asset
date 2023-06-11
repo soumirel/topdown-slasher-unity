@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a45b044ad674700bd6105aaf0a26dc7, type: 3}
-  m_Name: PlayerData
+  m_Name: PlayerDataSettings
   m_EditorClassIdentifier: 
-  _movementSpeed: 5
+  _movementSpeed: 7
+  _turnSpeed: 0.1
   _maxHealthPoint: 10

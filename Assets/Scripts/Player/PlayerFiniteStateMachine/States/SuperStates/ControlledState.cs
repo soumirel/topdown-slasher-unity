@@ -1,62 +1,55 @@
-﻿using ComponentSystem;
-using ComponentSystem.Components;
+﻿using Components;
+using ComponentSystem;
 using UnityEngine;
 
 namespace Player.PlayerFiniteStateMachine.States.SuperStates
 {
     public class ControlledState : PlayerState
     {
-        protected HandsCoreComponent Hands =>
-            _handsCoreComponent
-                ? _handsCoreComponent
-                : core.GetCoreComponent(ref _handsCoreComponent);
+        protected Hands hands;
+        protected Movement movement;
+        protected PlayerVisuals visuals;
 
-        protected MovementCoreComponent Movement =>
-            _movement ? _movement : core.GetCoreComponent(ref _movement);
-
-
-        private HandsCoreComponent _handsCoreComponent;
-        private MovementCoreComponent _movement;
-
-        private bool _isTurning;
-
-        protected ControlledState(PlayerController player, PlayerStateMachine stateMachine, int hashedAnimatorParam)
+        protected ControlledState(Player player, PlayerStateMachine stateMachine, int hashedAnimatorParam)
             : base(player, stateMachine, hashedAnimatorParam)
         {
+            movement = player.Movement;
+            visuals = player.PlayerVisuals;
+            hands = player.Hands;
+            
         }
 
         public override void Enter()
         {
             base.Enter();
-            Visuals.OnTurnFinish += FinishTurn;
-            _isTurning = false;
+            visuals.OnTurnFinish += FinishTurn;
         }
 
         public override void Exit()
         {
-            Visuals.OnTurnFinish -= FinishTurn;
+            visuals.OnTurnFinish -= FinishTurn;
             base.Exit();
         }
+
+        protected override void CheckTransitions() { }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
 
             ApplyTurnDirection();
-
-            if (!_isTurning)
+            
+            if (!player.IsTurning)
             {
-                Hands?.ChangePosition(
-                    player.InputHandler.SightDirection);
+                hands.ChangePosition(player.InputHandler.SightDirection);
             }
         }
 
         private void ApplyTurnDirection()
         {
-            if (core.CheckTurnNeed(inputHandler.SightDirection) && !_isTurning)
+            if (player.FacingDirection != (int)Mathf.Sign(inputHandler.SightDirection.x))
             {
-                _isTurning = true;
-                core.Turn();
+                player.StartTurn();
             }
         }
 
@@ -64,7 +57,6 @@ namespace Player.PlayerFiniteStateMachine.States.SuperStates
         private void FinishTurn()
         {
             StartMainAnimation();
-            _isTurning = false;
         }
     }
 }

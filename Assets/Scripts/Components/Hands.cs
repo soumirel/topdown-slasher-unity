@@ -17,6 +17,7 @@ namespace Components
 
         private ITurnable _turnable;
 
+        
         public void Initialize(ITurnable turnable)
         {
             _turnable = turnable;
@@ -53,6 +54,7 @@ namespace Components
             return new Vector2(x, y);
         }
 
+        
         public void ChangePosition(Vector2 direction)
         {
             direction = ClampDirection(direction);
@@ -70,6 +72,7 @@ namespace Components
                 Time.deltaTime * 20);
         }
 
+        
         public void Turn()
         {
             var targetPosition = new Vector2(-_handTransform.localPosition.x, _handTransform.localPosition.y);
@@ -80,6 +83,7 @@ namespace Components
             StartCoroutine(TurnCoroutine(startPosition, targetPosition, startTime, duration));
         }
 
+        
         private IEnumerator TurnCoroutine(Vector2 startPosition, Vector2 targetPosition, float startTime, float duration)
         {
             while (Time.time < startTime + duration)

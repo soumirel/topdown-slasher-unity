@@ -6,6 +6,8 @@ namespace Player.Input
 {
     public class PlayerInputHandler : MonoBehaviour
     {
+        public event Action OnAttackAction;
+        
         private PlayerInput _playerInput;
         private Camera _camera;
 
@@ -13,11 +15,6 @@ namespace Player.Input
         private Vector2 _rawSightPosition;
         
         public bool AttackStarted { get; private set; }
-        public bool AttackPerformed { get; private set; }
-        public bool AttackCanceled { get; private set; }
-        
-        public bool AimPerformed { get; private set; }
-        public bool AimCanceled { get; private set; }
 
         public bool IsMoving { get; private set; }
         public Vector2 MovementDirection { get; private set; }
@@ -41,9 +38,10 @@ namespace Player.Input
 
         public void OnAttack(InputAction.CallbackContext value)
         {
-            AttackStarted = value.started;
-            AttackPerformed = value.performed;
-            AttackCanceled = value.canceled;
+            if (value.started)
+            {
+                OnAttackAction?.Invoke();
+            }
         }
 
         public void OnSightPosition(InputAction.CallbackContext value)
@@ -52,12 +50,6 @@ namespace Player.Input
             WorldSightPosition = (_camera.ScreenToWorldPoint(_rawSightPosition) -
                                    transform.position);
             SightDirection = WorldSightPosition.normalized;
-        }
-
-        public void OnAim(InputAction.CallbackContext value)
-        {
-            AimPerformed = value.performed;
-            AimCanceled = value.canceled;
         }
     }
 }

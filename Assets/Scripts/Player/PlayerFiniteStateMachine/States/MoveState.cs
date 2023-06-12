@@ -6,20 +6,20 @@ namespace Player.PlayerFiniteStateMachine.States
     public class MoveState : PlayerState
     {
         protected Movement movement;
-        private Hands _hands;
+        private HandsPositioner _handsPositioner;
         
         public MoveState(Player player, PlayerStateMachine stateMachine, string animationTransitionParam) 
             : base(player, stateMachine, animationTransitionParam)
         {
             movement = player.Movement;
-            _hands = player.Hands;
+            _handsPositioner = player.HandsPositioner;
         }
         
         public override void LogicUpdate()
         {
             base.LogicUpdate();
             
-            _hands.ChangePosition(player.InputHandler.SightDirection);
+            _handsPositioner.ChangePosition(player.InputHandler.SightDirection);
         }
 
         protected override void CheckTransitions()

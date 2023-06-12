@@ -27,13 +27,14 @@ namespace Player
         #region Components
         
         public PlayerInputHandler InputHandler { get; private set; }
-        public Hands Hands { get; private set; }
+        public HandsPositioner HandsPositioner { get; private set; }
         public Movement Movement { get; private set; }
         public PlayerStateMachine StateMachine { get; private set;  }
         public Rigidbody2D Rb { get; private set; }
         public Animator Animator { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set;}
         public AnyStateAnimator AnyStateAnimator { get; private set; }
+        public Combat Combat { get; private set; }
 
         #endregion
         
@@ -45,11 +46,12 @@ namespace Player
             InputHandler = GetComponent<PlayerInputHandler>();
             Rb = GetComponent<Rigidbody2D>();
             Movement = GetComponent<Movement>();
-            Hands = GetComponentInChildren<Hands>();
+            HandsPositioner = GetComponentInChildren<HandsPositioner>();
             StateMachine = GetComponent<PlayerStateMachine>();
             AnyStateAnimator = GetComponent<AnyStateAnimator>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
             Animator = GetComponent<Animator>();
+            Combat = GetComponent<Combat>();
             
             InitializeComponents();
         }
@@ -75,7 +77,7 @@ namespace Player
         {
             Movement.Initialize(this);
             StateMachine.Initialize(this);
-            Hands.Initialize(this);
+            HandsPositioner.Initialize(this);
             AnyStateAnimator.Initialize(this);
         }
     }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8583000204888995693}
   - component: {fileID: 7827132298833799382}
   - component: {fileID: 5254926947794983455}
+  - component: {fileID: 6927159976056361585}
   m_Layer: 0
   m_Name: hand
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2842429068098171596}
+  - {fileID: 4252913575558751177}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -119,7 +120,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1001 &3315462661353812943
+--- !u!114 &6927159976056361585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8599016702628727274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2e23c64d0d443cb26455dac92a482d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentWeapon: {fileID: 0}
+--- !u!1001 &3636049533276873418
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -136,7 +150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 680243191045996803, guid: 80b5c4321706cbd4997b9d1a0af6aa68, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.04
       objectReference: {fileID: 0}
     - target: {fileID: 680243191045996803, guid: 80b5c4321706cbd4997b9d1a0af6aa68, type: 3}
       propertyPath: m_LocalPosition.z
@@ -172,12 +186,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1126588357390827144, guid: 80b5c4321706cbd4997b9d1a0af6aa68, type: 3}
       propertyPath: m_Name
-      value: excalibur__0
+      value: excalibur
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80b5c4321706cbd4997b9d1a0af6aa68, type: 3}
---- !u!4 &2842429068098171596 stripped
+--- !u!4 &4252913575558751177 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 680243191045996803, guid: 80b5c4321706cbd4997b9d1a0af6aa68, type: 3}
-  m_PrefabInstance: {fileID: 3315462661353812943}
+  m_PrefabInstance: {fileID: 3636049533276873418}
   m_PrefabAsset: {fileID: 0}

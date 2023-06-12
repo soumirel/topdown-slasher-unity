@@ -4,6 +4,6 @@ namespace Interfaces
 {
     public interface IHaveHands
     {
-        Hands Hands { get; }
+        HandsPositioner HandsPositioner { get; }
     }
 }

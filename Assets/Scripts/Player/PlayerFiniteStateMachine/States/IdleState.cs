@@ -6,27 +6,41 @@ namespace Player.PlayerFiniteStateMachine.States
 {
     public class IdleState : PlayerState
     {
-        protected Hands hands;
-        protected Movement movement;
+        private HandsPositioner _handsPositioner;
+        private Movement _movement;
+        private Combat _combat;
 
         public IdleState(Player player, PlayerStateMachine stateMachine, string animationTransitionParam)
             : base(player, stateMachine, animationTransitionParam)
         {
-            hands = player.Hands;
-            movement = player.Movement;
+            _handsPositioner = player.HandsPositioner;
+            _movement = player.Movement;
+            _combat = player.Combat;
         }
 
         public override void Enter()
         {
             base.Enter();
-            
-            movement.Stop();
+            inputHandler.OnAttackAction += Attack;
+            _movement.Stop();
+        }
+
+        public override void Exit()
+        {
+            inputHandler.OnAttackAction -= Attack;
+            base.Exit();
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            hands.ChangePosition(player.InputHandler.SightDirection);
+            _handsPositioner.ChangePosition(inputHandler.SightDirection);
+        }
+
+
+        private void Attack()
+        {
+            _combat.Attack();
         }
 
         protected override void CheckTransitions()

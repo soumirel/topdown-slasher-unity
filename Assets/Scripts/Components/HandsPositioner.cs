@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Components
 {
-    public class Hands : MonoBehaviour
+    public class HandsPositioner : MonoBehaviour
     {
         [SerializeField] private Transform _handTransform;
         

@@ -5,7 +5,7 @@ namespace Player.PlayerFiniteStateMachine.States
 {
     public class TurnState : PlayerState
     {
-        private Hands _hands;
+        private HandsPositioner _handsPositioner;
         private Movement _movement;
         private AnyStateAnimator _anyStateAnimator;
         
@@ -13,7 +13,7 @@ namespace Player.PlayerFiniteStateMachine.States
             : base(player, stateMachine, animationTransitionParam)
         {
             _movement = player.Movement;
-            _hands = player.Hands;
+            _handsPositioner = player.HandsPositioner;
             _anyStateAnimator = player.AnyStateAnimator;
         }
         
@@ -22,7 +22,7 @@ namespace Player.PlayerFiniteStateMachine.States
             base.Enter();
             player.IsTurning = true;
             player.FacingDirection *= -1;
-            _hands.Turn();
+            _handsPositioner.Turn();
             _anyStateAnimator.OnAnimationFinished += FinishTurn;
         }
 
@@ -36,7 +36,7 @@ namespace Player.PlayerFiniteStateMachine.States
         {
             base.LogicUpdate();
             
-            _hands.ChangePosition(player.InputHandler.SightDirection);
+            _handsPositioner.ChangePosition(player.InputHandler.SightDirection);
         }
         
         public override void PhysicsUpdate()

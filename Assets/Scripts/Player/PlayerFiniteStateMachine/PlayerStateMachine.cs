@@ -8,12 +8,29 @@ namespace Player.PlayerFiniteStateMachine
 {
     public class PlayerStateMachine : MonoBehaviour
     {
-        [SerializeField] private PlayerController _player;
-        
-        private Dictionary<PlayerStateType, PlayerState> _states
-            = new Dictionary<PlayerStateType, PlayerState>();
+        private Player _player;
+
+        private Dictionary<PlayerStateType, PlayerState> _states;
 
         private PlayerState _currentState;
+
+        public void Initialize(Player player)
+        {
+            _player = player;
+            InitializeStates();
+        }
+        
+        private void InitializeStates()
+        {
+            _states.TryAdd(PlayerStateType.Idle, new IdleState(_player, this, "idle"));
+            _states.TryAdd(PlayerStateType.Move, new MoveState(_player, this, "move"));
+            _states.TryAdd(PlayerStateType.Turn, new TurnState(_player, this, "turn"));
+        }
+
+        public void Awake()
+        {
+            _states = new Dictionary<PlayerStateType, PlayerState>();
+        }
 
         public void Start()
         {
@@ -22,14 +39,6 @@ namespace Player.PlayerFiniteStateMachine
                 _currentState = startState;
                 _currentState.Enter();
             }
-        }
-
-        public void InitializeStates()
-        {
-           _states.TryAdd(PlayerStateType.Idle, new IdleState(_player, this, _player.IdleParam));
-           _states.TryAdd(PlayerStateType.Move, new MoveState(_player, this, _player.MoveParam));
-           _states.TryAdd(PlayerStateType.Aim, new AimState(_player, this, _player.AimParam));
-           _states.TryAdd(PlayerStateType.Attack, new AttackState(_player, this, _player.AttackParam));
         }
 
         public void SwitchState(PlayerStateType stateType)

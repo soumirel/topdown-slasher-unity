@@ -1,48 +1,45 @@
-﻿
-using ComponentSystem;
+﻿using Components;
 using UnityEngine;
 
 namespace Player.PlayerFiniteStateMachine.States
 {
     public class MoveState : PlayerState
     {
-        private float _movementSpeed;
-
-        public MoveState(PlayerController player, PlayerStateMachine stateMachine, int hashedAnimatorParam)
-            : base(player, stateMachine, hashedAnimatorParam)
+        protected Movement movement;
+        private Hands _hands;
+        
+        public MoveState(Player player, PlayerStateMachine stateMachine, string animationTransitionParam) 
+            : base(player, stateMachine, animationTransitionParam)
         {
-            _movementSpeed = player.Data.MovementSpeed;
-        }
-
-        protected override void CheckTransitions()
-        {
-            base.CheckTransitions();
-            
-            if (player.InputHandler.IsMoving)
-            {
-                SwitchState(PlayerStateType.Idle);
-            }
-
-            if (player.InputHandler.AttackPerformed && combat.IsReady)
-            {
-                SwitchState(PlayerStateType.Aim);
-            }
+            movement = player.Movement;
+            _hands = player.Hands;
         }
         
         public override void LogicUpdate()
         {
             base.LogicUpdate();
             
-            player.Animator.SetFloat(player.SightXParam ,player.InputHandler.SightDirection.x);
-            player.Animator.SetFloat(player.SightYParam ,player.InputHandler.SightDirection.y);
+            _hands.ChangePosition(player.InputHandler.SightDirection);
+        }
+
+        protected override void CheckTransitions()
+        {
+            if (player.FacingDirection != (int)Mathf.Sign(inputHandler.SightDirection.x))
+            {
+                SwitchState(PlayerStateType.Turn);
+            }
             
-            combat.CurrentWeapon.Rotate(player.InputHandler.WorldSightPosition);
+            if (!player.InputHandler.IsMoving)
+            {
+                SwitchState(PlayerStateType.Idle);
+            }
         }
 
         public override void PhysicsUpdate()
         {
             base.PhysicsUpdate();
-            movement.SetVelocity(_movementSpeed, player.InputHandler.MovementDirection);
+            
+            movement.Move(inputHandler.MovementDirection);
         }
     }
 }

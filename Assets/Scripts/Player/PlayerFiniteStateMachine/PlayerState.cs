@@ -1,6 +1,8 @@
-﻿using ComponentSystem;
-using ComponentSystem.Components;
+﻿using Components;
+using ComponentSystem;
+using Player.Input;
 using Player.PlayerFiniteStateMachine.States;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -8,67 +10,48 @@ namespace Player.PlayerFiniteStateMachine
 {
     public abstract class PlayerState
     {
-        protected readonly PlayerController player;
-        
-        private readonly PlayerStateMachine stateMachine;
-        private readonly int _hashedAnimatorParam;
+        protected readonly Player player;
+        protected readonly PlayerInputHandler inputHandler;
 
-        protected MovementComponent movement;
-        protected CombatComponent combat;
+        private readonly PlayerStateMachine _stateMachine;
+        private readonly string _animationTransitionParam;
 
-        protected PlayerState(PlayerController player, PlayerStateMachine stateMachine, int hashedAnimatorParam)
+        protected PlayerState(Player player, PlayerStateMachine stateMachine, string animationTransitionParam)
         {
             this.player = player;
-            this.stateMachine = stateMachine;
-            _hashedAnimatorParam = hashedAnimatorParam;
-            player.AnimationEventHandler.OnAnimationFinish += AnimationFinishTrigger;
-
-            movement = player.Core.GetCoreComponent<MovementComponent>();
-            combat = player.Core.GetCoreComponent<CombatComponent>();
+            _stateMachine = stateMachine;
+            _animationTransitionParam = animationTransitionParam;
+            
+            inputHandler = this.player.InputHandler;
         }
 
         public virtual void Enter()
         {
-            StartAnimation();
-            LogicUpdate();
-            PhysicsUpdate();
+            Debug.Log(this.GetType());
+            StartMainAnimation();
+            // LogicUpdate();
+            // PhysicsUpdate();
         }
 
         protected void SwitchState(PlayerStateType type)
         {
-            stateMachine.SwitchState(type);
+            _stateMachine.SwitchState(type);
         }
 
-        protected virtual void CheckTransitions()
-        {
-            
-        }
+        protected abstract void CheckTransitions();
 
         public virtual void LogicUpdate()
         {
             CheckTransitions();
         }
 
-        public virtual void PhysicsUpdate()
-        {
-        }
+        public virtual void PhysicsUpdate() {}
 
-        public virtual void Exit()
-        {
-            player.Animator.SetBool(_hashedAnimatorParam, false);
-        }
+        public virtual void Exit() {}
 
-        protected virtual void StartAnimation()
+        protected void StartMainAnimation()
         {
-            player.Animator.SetBool(_hashedAnimatorParam, true);
-        }
-
-        protected virtual void AnimationStartTrigger()
-        {
-        }
-
-        protected virtual void AnimationFinishTrigger()
-        {
+            player.AnyStateAnimator.PlayAnimation(_animationTransitionParam);
         }
     }
 }

@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using Animations;
 using Components;
 using Data;
 using Interfaces;
@@ -9,8 +12,10 @@ using UnityEngine;
 namespace Player
 {
     public class Player : MonoBehaviour,
-        IMovable, IHaveHands, ITurnable
+        IMovable, IHaveHands, ITurnable, IAnimated
     {
+        public event Action OnTurnFinish;
+        
         [SerializeField] private PlayerDataSettings _dataSettings;
         public float MovementSpeed { get; set; }
         public float TurnSpeedSeconds { get; set; }
@@ -18,16 +23,19 @@ namespace Player
 
         public bool IsTurning { get; set; }
         public int FacingDirection { get; set; }
+        public List<AnyStateAnimation> AnyStateAnimations { get; private set; }
         
         
         #region Components
         
         public PlayerInputHandler InputHandler { get; private set; }
-        public PlayerVisuals PlayerVisuals { get; private set; }
         public Hands Hands { get; private set; }
         public Movement Movement { get; private set; }
         public PlayerStateMachine StateMachine { get; private set;  }
-        public Rigidbody2D Rb { get; set; }
+        public Rigidbody2D Rb { get; private set; }
+        public Animator Animator { get; private set; }
+        public SpriteRenderer SpriteRenderer { get; private set;}
+        public AnyStateAnimator AnyStateAnimator { get; private set; }
 
         #endregion
         
@@ -37,40 +45,40 @@ namespace Player
             InitializeData();
             
             InputHandler = GetComponent<PlayerInputHandler>();
-            PlayerVisuals = GetComponent<PlayerVisuals>();
             Rb = GetComponent<Rigidbody2D>();
             Movement = GetComponent<Movement>();
             Hands = GetComponentInChildren<Hands>();
             StateMachine = GetComponent<PlayerStateMachine>();
+            AnyStateAnimator = GetComponent<AnyStateAnimator>();
+            SpriteRenderer = GetComponent<SpriteRenderer>();
+            Animator = GetComponent<Animator>();
             
             InitializeComponents();
         }
 
-        public void OnEnable()
-        {
-            PlayerVisuals.OnTurnFinish += FinishTurn;
-        }
-
-        private void OnDisable()
-        {
-            PlayerVisuals.OnTurnFinish -= FinishTurn;
-        }
-
-
+        
         private void InitializeData()
         {
             MovementSpeed = _dataSettings.MovementSpeed;
             TurnSpeedSeconds = _dataSettings.TurnSpeed;
             IsTurning = false;
             FacingDirection = 1;
+
+            AnyStateAnimations = new List<AnyStateAnimation>
+            {
+                new("idle", 0),
+                new("move", 0),
+                new("turn", 1),
+                new("hit", 2),
+            };
         }
 
         private void InitializeComponents()
         {
             Movement.Initialize(this);
-            PlayerVisuals.Initialize(this);
             StateMachine.Initialize(this);
             Hands.Initialize(this);
+            AnyStateAnimator.Initialize(this);
         }
         
         
@@ -81,7 +89,7 @@ namespace Player
                 IsTurning = true;
                 FacingDirection *= -1;
             
-                PlayerVisuals.Turn();
+                AnyStateAnimator.PlayAnimation("turn");
                 Hands.Turn();
             }
             
@@ -89,7 +97,9 @@ namespace Player
 
         public void FinishTurn()
         {
+            SpriteRenderer.flipX = !SpriteRenderer.flipX;
             IsTurning = false;
+            OnTurnFinish?.Invoke();
         }
     }
 }

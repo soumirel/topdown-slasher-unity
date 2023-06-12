@@ -5,8 +5,8 @@ namespace Player.PlayerFiniteStateMachine.States
 {
     public class IdleState : ControlledState
     {
-        public IdleState(Player player, PlayerStateMachine stateMachine, int hashedAnimatorParam) 
-            : base(player, stateMachine, hashedAnimatorParam) {}
+        public IdleState(Player player, PlayerStateMachine stateMachine, string animationTransitionParam) 
+            : base(player, stateMachine, animationTransitionParam) {}
 
         public override void Enter()
         {

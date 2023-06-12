@@ -33,7 +33,7 @@ namespace Player
         {
             _spriteRenderer.flipX = !_spriteRenderer.flipX;
             _player.IsTurning = false;
-            OnTurnFinish?.Invoke();
+            //OnTurnFinish?.Invoke();
         }
         
         public void SetAnimation(int hashedParam)
@@ -53,8 +53,8 @@ namespace Player
         public void Turn()
         {
             SetAnimation(TURN);
-            var stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
-            TurnAnimationSpeedMultiplier = _player.TurnSpeedSeconds / stateInfo.length;
+            //var stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+            //TurnAnimationSpeedMultiplier = _player.TurnSpeedSeconds / stateInfo.length;
             _animator.SetFloat(TURN_SPEED_MULTIPLIER, TurnAnimationSpeedMultiplier);
         }
     }

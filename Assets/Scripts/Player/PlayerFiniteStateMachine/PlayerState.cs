@@ -14,13 +14,13 @@ namespace Player.PlayerFiniteStateMachine
         protected readonly PlayerInputHandler inputHandler;
 
         private readonly PlayerStateMachine _stateMachine;
-        private readonly int _hashedAnimatorParam;
+        private readonly string _animationTransitionParam;
 
-        protected PlayerState(Player player, PlayerStateMachine stateMachine, int hashedAnimatorParam)
+        protected PlayerState(Player player, PlayerStateMachine stateMachine, string animationTransitionParam)
         {
             this.player = player;
             _stateMachine = stateMachine;
-            _hashedAnimatorParam = hashedAnimatorParam;
+            _animationTransitionParam = animationTransitionParam;
             
             inputHandler = this.player.InputHandler;
         }
@@ -51,7 +51,7 @@ namespace Player.PlayerFiniteStateMachine
 
         protected void StartMainAnimation()
         {
-            player.PlayerVisuals.SetAnimation(_hashedAnimatorParam);
+            player.AnyStateAnimator.PlayAnimation(_animationTransitionParam);
         }
     }
 }

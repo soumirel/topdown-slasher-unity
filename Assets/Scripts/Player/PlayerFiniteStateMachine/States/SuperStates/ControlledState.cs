@@ -8,13 +8,11 @@ namespace Player.PlayerFiniteStateMachine.States.SuperStates
     {
         protected Hands hands;
         protected Movement movement;
-        protected PlayerVisuals visuals;
 
-        protected ControlledState(Player player, PlayerStateMachine stateMachine, int hashedAnimatorParam)
-            : base(player, stateMachine, hashedAnimatorParam)
+        protected ControlledState(Player player, PlayerStateMachine stateMachine, string animationTransitionParam)
+            : base(player, stateMachine, animationTransitionParam)
         {
             movement = player.Movement;
-            visuals = player.PlayerVisuals;
             hands = player.Hands;
             
         }
@@ -22,12 +20,12 @@ namespace Player.PlayerFiniteStateMachine.States.SuperStates
         public override void Enter()
         {
             base.Enter();
-            visuals.OnTurnFinish += FinishTurn;
+            player.OnTurnFinish += FinishTurn;
         }
 
         public override void Exit()
         {
-            visuals.OnTurnFinish -= FinishTurn;
+            player.OnTurnFinish -= FinishTurn;
             base.Exit();
         }
 
@@ -56,6 +54,7 @@ namespace Player.PlayerFiniteStateMachine.States.SuperStates
 
         private void FinishTurn()
         {
+            Debug.Log(nameof(FinishTurn));
             StartMainAnimation();
         }
     }

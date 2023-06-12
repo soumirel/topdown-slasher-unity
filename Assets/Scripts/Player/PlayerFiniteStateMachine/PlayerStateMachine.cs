@@ -22,8 +22,8 @@ namespace Player.PlayerFiniteStateMachine
         
         private void InitializeStates()
         {
-            _states.TryAdd(PlayerStateType.Idle, new IdleState(_player, this, PlayerVisuals.IDLE));
-            _states.TryAdd(PlayerStateType.Move, new MoveState(_player, this, PlayerVisuals.MOVE));
+            _states.TryAdd(PlayerStateType.Idle, new IdleState(_player, this, "idle"));
+            _states.TryAdd(PlayerStateType.Move, new MoveState(_player, this, "move"));
         }
 
         public void Awake()

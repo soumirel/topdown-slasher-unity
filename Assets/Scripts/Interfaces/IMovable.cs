@@ -5,7 +5,7 @@ namespace Interfaces
 {
     public interface IMovable
     {
-        Rigidbody2D Rb { get; set; }
+        Rigidbody2D Rb { get; }
         
         Movement Movement { get; }
         

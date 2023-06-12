@@ -7,8 +7,8 @@ namespace Player.PlayerFiniteStateMachine.States
     {
         private float _movementSpeed;
 
-        public MoveState(Player player, PlayerStateMachine stateMachine, int hashedAnimatorParam) 
-            : base(player, stateMachine, hashedAnimatorParam)
+        public MoveState(Player player, PlayerStateMachine stateMachine, string animationTransitionParam) 
+            : base(player, stateMachine, animationTransitionParam)
         {
             _movementSpeed = player.MovementSpeed;
         }

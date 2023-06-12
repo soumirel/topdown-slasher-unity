@@ -29,8 +29,8 @@ namespace Player.PlayerFiniteStateMachine
         {
             Debug.Log(this.GetType());
             StartMainAnimation();
-            LogicUpdate();
-            PhysicsUpdate();
+            // LogicUpdate();
+            // PhysicsUpdate();
         }
 
         protected void SwitchState(PlayerStateType type)

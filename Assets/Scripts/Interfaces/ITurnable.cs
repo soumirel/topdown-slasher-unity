@@ -6,7 +6,5 @@
         public int FacingDirection { get; }
         public float TurnSpeedSeconds { get; set; }
         
-        void StartTurn();
-        void FinishTurn();
     }
 }

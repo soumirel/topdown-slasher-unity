@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Interfaces;
 using UnityEngine;
 
@@ -7,53 +9,56 @@ namespace Animations
     // TODO: улучшить архитектуру вызова анимаций
     public class AnyStateAnimator : MonoBehaviour
     {
+        public event Action OnAnimationFinished; 
+
         private IAnimated _animated;
         private Animator _animator;
 
-        private Dictionary<string, AnyStateAnimation> _anyStateAnimations;
+        private List<string> _animationTransitionTags;
 
-        private AnyStateAnimation _currentAnimation;
+        private string _currentAnimation;
 
         public void Initialize(IAnimated animated)
         {
             _animated = animated;
             _animator = animated.Animator;
-            InitializeAnimations(animated.AnyStateAnimations);
+            InitializeAnimations(animated.AnimationTransitionTags);
         }
 
-        private void InitializeAnimations(List<AnyStateAnimation> animations)
+        private void InitializeAnimations(List<string> animationTransitionTags)
         {
-            foreach (var anyStateAnimation in animations)
+            foreach (var animationTransitionTag in animationTransitionTags)
             {
-                _anyStateAnimations.TryAdd
-                (
-                    anyStateAnimation.TransitionTag,
-                    anyStateAnimation
-                );
+                if (!_animationTransitionTags.Contains(animationTransitionTag))
+                {
+                    _animationTransitionTags.Add(animationTransitionTag);
+                }
             }
         }
 
 
         public void Awake()
         {
-            _anyStateAnimations = new Dictionary<string, AnyStateAnimation>();
+            _animationTransitionTags = new List<string>();
         }
 
 
         public void PlayAnimation(string transitionTag)
         {
-            if (_anyStateAnimations.TryGetValue(transitionTag, out var anyStateAnimation))
+            if (_animationTransitionTags.Contains(transitionTag))
             {
-                if (_currentAnimation != null && _currentAnimation.Priority > anyStateAnimation.Priority)
-                    return;
-
                 if (_currentAnimation != null)
-                    _animator.SetBool(_currentAnimation.TransitionTag, false);
+                    _animator.SetBool(_currentAnimation, false);
     
-                _animator.SetBool(anyStateAnimation.TransitionTag, true);
-                _currentAnimation = anyStateAnimation;
+                _animator.SetBool(transitionTag, true);
+                _currentAnimation = transitionTag;
 
             }
+        }
+
+        private void OnAnimationFinishedTrigger()
+        {
+            OnAnimationFinished?.Invoke();
         }
     }
 }

@@ -9,6 +9,6 @@ namespace Interfaces
         Animator Animator { get; }
         SpriteRenderer SpriteRenderer { get; }
         
-        List<AnyStateAnimation> AnyStateAnimations { get; }
+        List<string> AnimationTransitionTags { get; }
     }
 }

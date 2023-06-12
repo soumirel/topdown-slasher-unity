@@ -1,20 +1,34 @@
-﻿using Player.PlayerFiniteStateMachine.States.SuperStates;
+﻿using Components;
 using UnityEngine;
 
 namespace Player.PlayerFiniteStateMachine.States
 {
-    public class MoveState : ControlledState
+    public class MoveState : PlayerState
     {
-        private float _movementSpeed;
-
+        protected Movement movement;
+        private Hands _hands;
+        
         public MoveState(Player player, PlayerStateMachine stateMachine, string animationTransitionParam) 
             : base(player, stateMachine, animationTransitionParam)
         {
-            _movementSpeed = player.MovementSpeed;
+            movement = player.Movement;
+            _hands = player.Hands;
+        }
+        
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
+            
+            _hands.ChangePosition(player.InputHandler.SightDirection);
         }
 
         protected override void CheckTransitions()
         {
+            if (player.FacingDirection != (int)Mathf.Sign(inputHandler.SightDirection.x))
+            {
+                SwitchState(PlayerStateType.Turn);
+            }
+            
             if (!player.InputHandler.IsMoving)
             {
                 SwitchState(PlayerStateType.Idle);

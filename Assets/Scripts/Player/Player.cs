@@ -14,8 +14,6 @@ namespace Player
     public class Player : MonoBehaviour,
         IMovable, IHaveHands, ITurnable, IAnimated
     {
-        public event Action OnTurnFinish;
-        
         [SerializeField] private PlayerDataSettings _dataSettings;
         public float MovementSpeed { get; set; }
         public float TurnSpeedSeconds { get; set; }
@@ -23,7 +21,7 @@ namespace Player
 
         public bool IsTurning { get; set; }
         public int FacingDirection { get; set; }
-        public List<AnyStateAnimation> AnyStateAnimations { get; private set; }
+        public List<string> AnimationTransitionTags { get; private set; }
         
         
         #region Components
@@ -64,12 +62,12 @@ namespace Player
             IsTurning = false;
             FacingDirection = 1;
 
-            AnyStateAnimations = new List<AnyStateAnimation>
+            AnimationTransitionTags = new List<string>
             {
-                new("idle", 0),
-                new("move", 0),
-                new("turn", 1),
-                new("hit", 2),
+                "idle",
+                "move",
+                "turn",
+                "hit",
             };
         }
 
@@ -79,27 +77,6 @@ namespace Player
             StateMachine.Initialize(this);
             Hands.Initialize(this);
             AnyStateAnimator.Initialize(this);
-        }
-        
-        
-        public void StartTurn()
-        {
-            if (!IsTurning)
-            {
-                IsTurning = true;
-                FacingDirection *= -1;
-            
-                AnyStateAnimator.PlayAnimation("turn");
-                Hands.Turn();
-            }
-            
-        }
-
-        public void FinishTurn()
-        {
-            SpriteRenderer.flipX = !SpriteRenderer.flipX;
-            IsTurning = false;
-            OnTurnFinish?.Invoke();
         }
     }
 }

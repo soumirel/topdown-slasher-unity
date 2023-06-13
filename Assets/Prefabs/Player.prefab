@@ -335,7 +335,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2876407300741384128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -366,7 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10eeef5a72ab43c9b2bf36f211bd703a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _handTransform: {fileID: 914471069958247127}
+  _handTransform: {fileID: 5911918822212251351}
   _upClamp: {x: 1, y: 1}
   _downClamp: {x: 0.5, y: -1}
   _ellipseTrajectory_a: 1.42
@@ -428,11 +428,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6930852689968243001, guid: 722fbcd9180fede4f82659bc311330a8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.37
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6930852689968243001, guid: 722fbcd9180fede4f82659bc311330a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.44999996
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6930852689968243001, guid: 722fbcd9180fede4f82659bc311330a8, type: 3}
       propertyPath: m_LocalPosition.z

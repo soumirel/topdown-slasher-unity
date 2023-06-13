@@ -15,15 +15,13 @@ namespace Player
         IMovable, IHaveHands, ITurnable, IAnimated
     {
         [SerializeField] private PlayerDataSettings _dataSettings;
-        public float MovementSpeed { get; set; }
-        public float TurnSpeedSeconds { get; set; }
-        
+        public PlayerDataSettings DataSettings => _dataSettings;
 
-        public bool IsTurning { get; set; }
+        public float MovementSpeed { get; set; }
+        
         public int FacingDirection { get; set; }
-        public List<string> AnimationTransitionTags { get; private set; }
-        
-        
+
+
         #region Components
         
         public PlayerInputHandler InputHandler { get; private set; }
@@ -60,17 +58,7 @@ namespace Player
         private void InitializeData()
         {
             MovementSpeed = _dataSettings.MovementSpeed;
-            TurnSpeedSeconds = _dataSettings.TurnSpeed;
-            IsTurning = false;
             FacingDirection = 1;
-
-            AnimationTransitionTags = new List<string>
-            {
-                "idle",
-                "move",
-                "turn",
-                "hit",
-            };
         }
 
         private void InitializeComponents()
@@ -79,6 +67,12 @@ namespace Player
             StateMachine.Initialize(this);
             HandsPositioner.Initialize(this);
             AnyStateAnimator.Initialize(this);
+        }
+        
+        public void Turn()
+        {
+            FacingDirection *= -1;
+            transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y + 180f, 0f);
         }
     }
 }

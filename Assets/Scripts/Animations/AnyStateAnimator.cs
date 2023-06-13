@@ -6,15 +6,14 @@ using UnityEngine;
 
 namespace Animations
 {
-    // TODO: улучшить архитектуру вызова анимаций
     public class AnyStateAnimator : MonoBehaviour
     {
         public event Action OnAnimationFinished; 
 
         private IAnimated _animated;
         private Animator _animator;
-
-        private List<string> _animationTransitionTags;
+        
+        private List<string> _animatorParams;
 
         private string _currentAnimation;
 
@@ -22,39 +21,46 @@ namespace Animations
         {
             _animated = animated;
             _animator = animated.Animator;
-            InitializeAnimations(animated.AnimationTransitionTags);
+            InitializeParams();
         }
 
-        private void InitializeAnimations(List<string> animationTransitionTags)
+
+        private void InitializeParams()
         {
-            foreach (var animationTransitionTag in animationTransitionTags)
+            _animatorParams = new List<string>();
+            foreach (var parameter in _animator.parameters)
             {
-                if (!_animationTransitionTags.Contains(animationTransitionTag))
-                {
-                    _animationTransitionTags.Add(animationTransitionTag);
-                }
+                _animatorParams.Add(parameter.name);
             }
         }
 
 
-        public void Awake()
+        public void PlayAnimation(string stateName)
         {
-            _animationTransitionTags = new List<string>();
-        }
-
-
-        public void PlayAnimation(string transitionTag)
-        {
-            if (_animationTransitionTags.Contains(transitionTag))
+            var stateHash = Animator.StringToHash(stateName);
+            if (_animator.HasState(0, stateHash))
             {
-                if (_currentAnimation != null)
-                    _animator.SetBool(_currentAnimation, false);
-    
-                _animator.SetBool(transitionTag, true);
-                _currentAnimation = transitionTag;
-
+                _animator.Play(stateHash);
+            }
+            else
+            {
+                Debug.LogWarning($"No {stateName} state in {gameObject.name} animator!");
             }
         }
+
+
+        public void ChangeAnimationSpeed(string stateParam, float speedMultiplier)
+        {
+            if (_animatorParams.Contains(stateParam))
+            {
+                _animator.SetFloat(stateParam, speedMultiplier);
+            }
+            else
+            {
+                Debug.LogWarning($"No {stateParam} param in {gameObject.name} animator!");
+            }
+        }
+        
 
         private void OnAnimationFinishedTrigger()
         {

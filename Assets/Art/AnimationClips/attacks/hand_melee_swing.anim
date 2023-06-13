@@ -45,13 +45,22 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0, y: 0, z: 0}
+        value: {x: 0.41803616, y: -0.29859924, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.125
+        value: {x: 0.4558853, y: -0.374481, z: 0}
+        inSlope: {x: 0.74533135, y: -0.9373233, z: 0}
+        outSlope: {x: 0.74533135, y: -0.9373233, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.13618541, y: 0.1454503, z: 0.33333334}
       - serializedVersion: 3
         time: 0.375
         value: {x: 0.5, y: -0.5, z: 0}
@@ -116,13 +125,22 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 0.41803616
         inSlope: 0
         outSlope: 0
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.125
+        value: 0.4558853
+        inSlope: 0.74533135
+        outSlope: 0.74533135
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.13618541
       - serializedVersion: 3
         time: 0.375
         value: 0.5
@@ -144,13 +162,22 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: -0.29859924
         inSlope: 0
         outSlope: 0
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.125
+        value: -0.374481
+        inSlope: -0.9373233
+        outSlope: -0.9373233
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.1454503
       - serializedVersion: 3
         time: 0.375
         value: -0.5

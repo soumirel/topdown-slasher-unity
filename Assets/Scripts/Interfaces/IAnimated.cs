@@ -8,7 +8,5 @@ namespace Interfaces
     {
         Animator Animator { get; }
         SpriteRenderer SpriteRenderer { get; }
-        
-        List<string> AnimationTransitionTags { get; }
     }
 }

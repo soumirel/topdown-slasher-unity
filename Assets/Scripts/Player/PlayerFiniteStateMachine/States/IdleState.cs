@@ -34,7 +34,13 @@ namespace Player.PlayerFiniteStateMachine.States
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            
             _handsPositioner.ChangePosition(inputHandler.SightDirection);
+            
+            if (player.FacingDirection != (int)Mathf.Sign(inputHandler.SightDirection.x))
+            {
+                player.Turn();
+            }
         }
 
 
@@ -45,11 +51,6 @@ namespace Player.PlayerFiniteStateMachine.States
 
         protected override void CheckTransitions()
         {
-            if (player.FacingDirection != (int)Mathf.Sign(inputHandler.SightDirection.x))
-            {
-                SwitchState(PlayerStateType.Turn);
-            }
-            
             if (inputHandler.IsMoving)
             {
                 SwitchState(PlayerStateType.Move);

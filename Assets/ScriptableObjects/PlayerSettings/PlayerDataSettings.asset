@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerDataSettings
   m_EditorClassIdentifier: 
   _movementSpeed: 7
-  _turnSpeed: 0.1
+  _turnSpeed: 0.25
   _maxHealthPoint: 10

@@ -4,5 +4,6 @@
     {
         None = -1,
         Melee,
+        Range,
     }
 }

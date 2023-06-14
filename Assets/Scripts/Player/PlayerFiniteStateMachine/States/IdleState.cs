@@ -1,19 +1,20 @@
 ﻿using Components;
 using ComponentSystem;
 using UnityEngine;
+using Weapons;
 
 namespace Player.PlayerFiniteStateMachine.States
 {
     public class IdleState : PlayerState
     {
-        private HandsPositioner _handsPositioner;
+        private Hand _hand;
         private Movement _movement;
         private Combat _combat;
 
         public IdleState(Player player, PlayerStateMachine stateMachine, string animationTransitionParam)
             : base(player, stateMachine, animationTransitionParam)
         {
-            _handsPositioner = player.HandsPositioner;
+            _hand = player.Hand;
             _movement = player.Movement;
             _combat = player.Combat;
         }
@@ -35,7 +36,7 @@ namespace Player.PlayerFiniteStateMachine.States
         {
             base.LogicUpdate();
             
-            _handsPositioner.ChangePosition(inputHandler.SightDirection);
+            _hand.FollowSight(inputHandler.SightDirection);
             
             if (player.FacingDirection != (int)Mathf.Sign(inputHandler.SightDirection.x))
             {

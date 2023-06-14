@@ -1,25 +1,26 @@
 ﻿using Components;
 using UnityEngine;
+using Weapons;
 
 namespace Player.PlayerFiniteStateMachine.States
 {
     public class MoveState : PlayerState
     {
         protected Movement movement;
-        private HandsPositioner _handsPositioner;
+        private Hand _hand;
         
         public MoveState(Player player, PlayerStateMachine stateMachine, string animationTransitionParam) 
             : base(player, stateMachine, animationTransitionParam)
         {
             movement = player.Movement;
-            _handsPositioner = player.HandsPositioner;
+            _hand = player.Hand;
         }
         
         public override void LogicUpdate()
         {
             base.LogicUpdate();
             
-            _handsPositioner.ChangePosition(inputHandler.SightDirection);
+            _hand.FollowSight(inputHandler.SightDirection);
             
             if (player.FacingDirection != (int)Mathf.Sign(inputHandler.SightDirection.x))
             {

@@ -1,33 +1,26 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Weapons;
 
 namespace Components
 {
     public class Combat : MonoBehaviour
     {
-        //public event Action OnAttackFinish;
+        [SerializeField] private Weapon _excalibur;
 
-        private bool _isAttack;
-        
-        [SerializeField] private Hand _hand;
+        [SerializeField] private Hand _primaryWeapon;
+        [SerializeField] private Hand _secondaryWeapon;
 
-        private void OnEnable()
+
+        public void Start()
         {
-            _hand.OnWeaponUsingFinish += FinishAttack;
+            _primaryWeapon.HandleWeapon(_excalibur);
         }
 
         public void Attack()
         {
-            if (!_isAttack)
-            {
-                _hand.UseWeapon();
-            }
-        }
-
-        public void FinishAttack()
-        {
-            _isAttack = false;
+            _primaryWeapon.UseWeapon();
         }
     }
 }

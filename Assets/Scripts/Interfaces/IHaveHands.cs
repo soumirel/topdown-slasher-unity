@@ -1,9 +1,10 @@
 ﻿using Components;
+using Weapons;
 
 namespace Interfaces
 {
     public interface IHaveHands
     {
-        HandsPositioner HandsPositioner { get; }
+        Hand Hand { get; }
     }
 }

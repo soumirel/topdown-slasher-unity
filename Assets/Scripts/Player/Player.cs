@@ -7,6 +7,7 @@ using Interfaces;
 using Player.Input;
 using Player.PlayerFiniteStateMachine;
 using UnityEngine;
+using Weapons;
 
 
 namespace Player
@@ -15,22 +16,19 @@ namespace Player
         IMovable, IHaveHands, ITurnable, IAnimated
     {
         [SerializeField] private PlayerDataSettings _dataSettings;
-        public PlayerDataSettings DataSettings => _dataSettings;
 
         public float MovementSpeed { get; set; }
-        
         public int FacingDirection { get; set; }
 
 
         #region Components
         
         public PlayerInputHandler InputHandler { get; private set; }
-        public HandsPositioner HandsPositioner { get; private set; }
+        public Hand Hand { get; private set; }
         public Movement Movement { get; private set; }
         public PlayerStateMachine StateMachine { get; private set;  }
         public Rigidbody2D Rb { get; private set; }
         public Animator Animator { get; private set; }
-        public SpriteRenderer SpriteRenderer { get; private set;}
         public AnyStateAnimator AnyStateAnimator { get; private set; }
         public Combat Combat { get; private set; }
 
@@ -44,10 +42,9 @@ namespace Player
             InputHandler = GetComponent<PlayerInputHandler>();
             Rb = GetComponent<Rigidbody2D>();
             Movement = GetComponent<Movement>();
-            HandsPositioner = GetComponentInChildren<HandsPositioner>();
+            Hand = GetComponentInChildren<Hand>();
             StateMachine = GetComponent<PlayerStateMachine>();
             AnyStateAnimator = GetComponent<AnyStateAnimator>();
-            SpriteRenderer = GetComponent<SpriteRenderer>();
             Animator = GetComponent<Animator>();
             Combat = GetComponent<Combat>();
             
@@ -65,7 +62,6 @@ namespace Player
         {
             Movement.Initialize(this);
             StateMachine.Initialize(this);
-            HandsPositioner.Initialize(this);
             AnyStateAnimator.Initialize(this);
         }
         

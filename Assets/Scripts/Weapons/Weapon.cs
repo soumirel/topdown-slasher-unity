@@ -1,40 +1,34 @@
 ﻿using System;
+using Animations;
+using Interfaces;
 using UnityEngine;
 
 
 namespace Weapons
 {
-    public abstract class Weapon : MonoBehaviour
+    public abstract class Weapon : MonoBehaviour, IAnimated
     {
-        //public WeaponClass Class { get; private set; }
+        public event Action OnUseAvailable;
+        
+        public Animator Animator { get; private set; }
+        public AnyStateAnimator AnyStateAnimator { get; private set;  }
 
-        private Collider2D _collider;
-        private Animator _animator;
-
-
-        private void Awake()
+        public virtual void Use()
         {
-            _animator = GetComponent<Animator>();
-            _collider = GetComponent<Collider2D>();
+            Attack();
         }
 
+        protected abstract void Attack();
 
-        private void OnEnable()
+        protected virtual void FinishAttack()
         {
-            _collider.enabled = false;
+            OnUseAvailable?.Invoke();
         }
 
-        public void Activate()
+        protected virtual void Awake()
         {
-            Debug.Log(nameof(Activate));
-            _collider.enabled = true;
-            _animator.SetTrigger("swing");
-        }
-
-
-        private void Deactivate()
-        {
-            _collider.enabled = false;
+            Animator = GetComponent<Animator>();
+            AnyStateAnimator = GetComponent<AnyStateAnimator>();
         }
     }
 }

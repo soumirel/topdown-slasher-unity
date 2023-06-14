@@ -7,6 +7,7 @@ namespace Interfaces
     public interface IAnimated
     {
         Animator Animator { get; }
-        SpriteRenderer SpriteRenderer { get; }
+
+        AnyStateAnimator AnyStateAnimator { get; }
     }
 }

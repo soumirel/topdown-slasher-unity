@@ -8,8 +8,8 @@ namespace Player.PlayerFiniteStateMachine.States
         protected Movement movement;
         private HandsPositioner _handsPositioner;
         
-        public MoveState(Player player, PlayerStateMachine stateMachine, string animationTransitionParam) 
-            : base(player, stateMachine, animationTransitionParam)
+        public MoveState(Player player, PlayerStateMachine stateMachine, string animationState) 
+            : base(player, stateMachine, animationState)
         {
             movement = player.Movement;
             _handsPositioner = player.HandsPositioner;

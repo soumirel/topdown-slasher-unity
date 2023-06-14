@@ -43,7 +43,8 @@ namespace Player.PlayerFiniteStateMachine
         public void SwitchState(PlayerStateType stateType)
         {
             if (!_states.TryGetValue(stateType, out var newState)) return;
-            
+            if (_currentState.Equals(newState)) return;
+
             _currentState.Exit();
             _currentState = newState;
             _currentState.Enter();

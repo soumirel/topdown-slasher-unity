@@ -14,13 +14,13 @@ namespace Player.PlayerFiniteStateMachine
         protected readonly PlayerInputHandler inputHandler;
 
         private readonly PlayerStateMachine _stateMachine;
-        private readonly string _animationTransitionParam;
+        private readonly string _animationState;
 
-        protected PlayerState(Player player, PlayerStateMachine stateMachine, string animationTransitionParam)
+        protected PlayerState(Player player, PlayerStateMachine stateMachine, string animationState)
         {
             this.player = player;
             _stateMachine = stateMachine;
-            _animationTransitionParam = animationTransitionParam;
+            _animationState = animationState;
             
             inputHandler = this.player.InputHandler;
         }
@@ -29,8 +29,6 @@ namespace Player.PlayerFiniteStateMachine
         {
             Debug.Log(this.GetType());
             StartMainAnimation();
-            // LogicUpdate();
-            // PhysicsUpdate();
         }
 
         protected void SwitchState(PlayerStateType type)
@@ -51,7 +49,7 @@ namespace Player.PlayerFiniteStateMachine
 
         protected void StartMainAnimation()
         {
-            player.AnyStateAnimator.PlayAnimation(_animationTransitionParam);
+            player.AnyStateAnimator.PlayAnimation(_animationState);
         }
     }
 }

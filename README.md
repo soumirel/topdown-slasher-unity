@@ -1,1 +1,1 @@
-# top-down-game-unity
+# Topdown slasher game as a unity learning project

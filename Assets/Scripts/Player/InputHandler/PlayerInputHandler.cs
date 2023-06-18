@@ -48,7 +48,7 @@ namespace Player.Input
         {
             _rawSightPosition = value.ReadValue<Vector2>();
             WorldSightPosition = (_camera.ScreenToWorldPoint(_rawSightPosition) -
-                                   transform.position);
+                                  transform.position);
             SightDirection = WorldSightPosition.normalized;
         }
     }
